@@ -1,0 +1,22 @@
+{
+  "name": "superhero-uni",
+  "description": "You are given a few simple tasks in order to exercise the skills learned through the lectures from the **Web applications with Node.js** course. The main goal is to improve your knowledge on using [Express](http://expressjs.com), [Pug](http://pugjs.com) and [MongoDB](http://mongodb.org), all that in a Node.js environment.",
+  "main": "index.js",
+  "authors": [
+    "TonyNikolov <fatalclaw@hotmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/TelerikAcademy/Web-Applications-with-Node.js",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jquery": "^3.1.1"
+  }
+}

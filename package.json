@@ -1,0 +1,25 @@
+{
+  "name": "superhero-uni",
+  "version": "1.0.0",
+  "description": "You are given a few simple tasks in order to exercise the skills learned through the lectures from the **Web applications with Node.js** course. The main goal is to improve your knowledge on using [Express](http://expressjs.com), [Pug](http://pugjs.com) and [MongoDB](http://mongodb.org), all that in a Node.js environment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "mongoose": "^4.7.0",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.0-beta6"
+  },
+  "devDependencies": {
+    "eslint": "^3.10.2",
+    "nodemon": "^1.11.0"
+  }
+}
