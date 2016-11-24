@@ -20,7 +20,7 @@ module.exports = function (data) {
             }
         },
         getUnauthorized(req, res) {
-            res.send('<h1>oburkal si reisa pich!</h1>');
+            res.send('<h1>Unauthorized!</h1>');
         },
         getRegister(req, res) {
             res.status(200).send(`

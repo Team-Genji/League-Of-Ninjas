@@ -21,7 +21,6 @@ module.exports = {
     },
     findByUsername(username) {
         const user = db.find(x => x.username === username);
-        console.log(db);
         return Promise.resolve(user);
     },
     createUser(user) {
