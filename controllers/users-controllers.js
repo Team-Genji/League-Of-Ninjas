@@ -9,7 +9,7 @@ module.exports = function (data) {
             `);
         },
         getLogin(req, res) {
-            return res.render('login');
+            return res.render('signin');
         },
         getProfile(req, res) {
             if (!req.isAuthenticated()) {
