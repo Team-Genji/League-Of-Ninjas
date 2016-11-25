@@ -23,13 +23,7 @@ module.exports = function (data) {
             res.send('<h1>Unauthorized!</h1>');
         },
         getRegister(req, res) {
-            res.status(200).send(`
-                <form action='/register' method='POST'>
-                    <input type='text' name='username' placeholder='Username' />
-                    <input type='text' name='password' placeholder='Password' />
-                    <input type='submit' value='Submit'>
-                </form>
-            `);
+            return res.render('signup');
         }
     };
 };

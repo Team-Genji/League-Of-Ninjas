@@ -9,14 +9,14 @@ const data = require('../dummy-db'),
 const authController = createAuthController(data),
     usersController = createUsersController(data);
 
-module.exports= function(app){
+module.exports= function({app,data}){
 
     router
-    .get('/login',usersController.getLogin)
-    .post('/login', authController.loginLocal)
-    .get('/register', usersController.getRegister)
-    .post('/register', authController.register)
-    .get('/profile', usersController.getProfile)
+    .get('/signin',usersController.getLogin)  //get Sign in view (login)
+    .post('/signin', authController.loginLocal) // post Sign in data (register)
+    .get('/signup', usersController.getRegister)  //get Sign up view (login)
+    .post('/signup', authController.register)  // post Sign up data (register)
+    .get('/profile', usersController.getProfile) // get profile view
     .get('/unauthorized', usersController.getUnauthorized);
 
     app.use(router);

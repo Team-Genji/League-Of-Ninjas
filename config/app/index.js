@@ -16,6 +16,5 @@ app.use(cookieParser());
 app.use(session({ secret: 'purple unicorn' }));
 
 require('../passport/')(app);
-require('../../routers/user-routes')(app);
 
 module.exports = app;
