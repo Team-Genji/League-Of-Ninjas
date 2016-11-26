@@ -62,15 +62,13 @@ module.exports = function (data) {
             res.redirect('/home');
         },
         register(req, res) {
-            const user = {
-                username: req.body.username,
-                password: req.body.password
-            };
-
-            data.createUser(user)
+          
+            let username = req.body.username;
+            let password = req.body.password;
+       
+            data.createUser(username,password)
                 .then(dbUser => {
-                    res.status(201)
-                       .send('<h1>Worked!</h1>');
+                    return res.redirect('/signin');
                 })
                 .catch(error => res.status(500).json(error));
         }

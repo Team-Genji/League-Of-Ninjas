@@ -1,25 +1,42 @@
-'use strict';
+/* globals module require */
 
 const passport = require('passport'),
-    data = require('../../dummy-db');
+    LocalStrategy = require('passport-local').Strategy;
 
-passport.serializeUser((user, done) => {
-    if(user) {
-        done(null, user.id);
-    }
-});
-
-passport.deserializeUser((userId, done) => {
-    data
-      .findById(userId)
-      .then(user => done(null, user || false))
-      .catch(error => done(error, false));
-});
-
-require('./local-strategy')(passport, data);
-//require('./github-strategy')(passport, data);
-
-module.exports = app => {
+module.exports = function({ app, data }) {
     app.use(passport.initialize());
     app.use(passport.session());
+
+    const strategy = new LocalStrategy((username, password, done) => {
+        data.findByUsername(username, password)
+            .then(user => {
+                if (user) {
+                    return done(null, user);
+                }
+
+                return done(null, false);
+            })
+            .catch(error => done(error, null));
+    });
+
+    passport.use(strategy);
+
+    passport.serializeUser((user, done) => {
+        if (user) {
+            done(null, user._id);
+        }
+    });
+
+    passport.deserializeUser((id, done) => {
+        // use the id serialized in the session to retrieve the use from the database
+        data.findUserById(id)
+            .then(user => {
+                if (user) {
+                    return done(null, user);
+                }
+
+                return done(null, false);
+            })
+            .catch(error => done(error, false));
+    });
 };

@@ -1,15 +1,16 @@
 /*globals require module  */
 /*jshint esversion: 6 */
 // 
-const data = require('../dummy-db'),
-    createUsersController = require('../controllers/users-controllers'),
+const   createUsersController = require('../controllers/users-controllers'),
     createAuthController = require('../controllers/auth-controllers'),
     router = require('express').Router();
 
-const authController = createAuthController(data),
-    usersController = createUsersController(data);
 
 module.exports= function({app,data}){
+
+
+    const authController = createAuthController(data),
+        usersController = createUsersController(data);
 
     router
     .get('/signin',usersController.getLogin)  //get Sign in view (login)
