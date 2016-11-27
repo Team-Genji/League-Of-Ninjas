@@ -4,7 +4,7 @@ class KeyProvider {
         this._keys = keys;
     }
 
-    getNextKey() {
+    get nextKey() {
         if (this._index === this._keys.length) {
             this._index = 0;
         }
