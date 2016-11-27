@@ -9,7 +9,7 @@ module.exports = function (data) {
             `);
         },
         getLogin(req, res) {
-            return res.render('signin');
+            return res.render('./user-controls/signin');
         },
         getProfile(req, res) {
             if (!req.isAuthenticated()) {
@@ -23,7 +23,7 @@ module.exports = function (data) {
             res.send('<h1>Unauthorized!</h1>');
         },
         getRegister(req, res) {
-            return res.render('signup');
+            return res.render('./user-controls/signup');
         }
     };
 };
