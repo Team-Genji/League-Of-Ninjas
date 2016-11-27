@@ -1,10 +1,10 @@
-/*globals require module  */
-/*jshint esversion: 6 */
+/* globals require module  */
+/* jshint esversion: 6 */
 
-const config = require('./config'),
-    data = require('./data')(config.connectionString),
-    app = require('./config/app')(data);
-
+const config = require('./config');
+const data = require('./data')(config.connectionString);
+const app = require('./config/app')(data);
 require('./routers')(app, data);
 
-app.listen(config.port, ()=> console.log(`App running at ${config.port}`));
+app.listen(config.port);
+console.log('running');

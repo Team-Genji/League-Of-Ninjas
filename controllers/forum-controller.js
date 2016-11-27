@@ -1,6 +1,6 @@
-/*globals require module*/
+/* globals require module*/
 
-module.exports = function (data) {
+module.exports = function () {
     return {
         listTopics(req, res) {
             res.render('./forums/forum-main');

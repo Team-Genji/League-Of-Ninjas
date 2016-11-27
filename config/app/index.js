@@ -1,5 +1,3 @@
-'use strict';
-
 const express = require('express'),
     session = require('express-session'),
     cookieParser = require('cookie-parser'),
@@ -14,7 +12,7 @@ module.exports = function(data) {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(session({ secret: 'purple unicorn' }));
-    
+
     require('../passport')(app, data);
 
     return app;

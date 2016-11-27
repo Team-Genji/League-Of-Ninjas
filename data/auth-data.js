@@ -13,7 +13,7 @@ module.exports = function(models) {
                 });
             });
         },
-        
+
         findUserById(id) {
             return new Promise((resolve, reject) => {
                 User.findOne({ _id: id }, (err, user) => {

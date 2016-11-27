@@ -1,5 +1,5 @@
-/*globals require module  */
-/*jshint esversion: 6 */
+/* globals require module  */
+/* jshint esversion: 6 */
 
 const modelRegistrator = require('./model-registrator');
 

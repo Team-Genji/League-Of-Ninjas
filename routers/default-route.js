@@ -1,4 +1,4 @@
-/*globals require module*/
+/* globals require module*/
 
 module.exports = function (app, data) {
     let controller = require('../controllers/default-controller')(data);

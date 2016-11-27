@@ -1,15 +1,15 @@
-/*globals require module*/
+/* globals require module*/
 
 const fs = require('fs');
 const path = require('path');
 
 function walkDirectorySync(currentDirPath, callback) {
-    fs.readdirSync(currentDirPath).forEach(function (name) {
+    fs.readdirSync(currentDirPath).forEach(name => {
         let filePath = path.join(currentDirPath, name);
         let stat = fs.statSync(filePath);
 
         if (stat.isFile()) {
-            callback(filePath);
+            return callback(filePath);
         } else if (stat.isDirectory()) {
             walkDirectorySync(filePath, callback);
         }

@@ -1,7 +1,7 @@
-/*globals require module*/
-/*jshint esversion: 6 */
+/* globals require module*/
+/* jshint esversion: 6 */
 
-module.exports = function (data) {
+module.exports = function () {
     return {
         home(req, res) {
             return res.render('./main/home', {

@@ -1,7 +1,7 @@
-/*globals require module  */
-/*jshint esversion: 6 */
+/* globals require module  */
+/* jshint esversion: 6 */
 
-module.exports = function (data) {
+module.exports = function () {
     return {
         getHome(req, res) {
             res.status(200).send(`
@@ -12,7 +12,7 @@ module.exports = function (data) {
             return res.render('./user-controls/signin');
         },
         getProfile(req, res) {
-            if (!req.isAuthenticated()) {
+            if (req.isAuthenticated() === false) {
                 res.status(401).redirect('/unauthorized');
             } else {
                 const user = req.user;

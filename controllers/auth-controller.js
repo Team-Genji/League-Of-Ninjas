@@ -1,27 +1,27 @@
-/*globals require module  */
-/*jshint esversion: 6 */
+/* globals require module  */
+/* jshint esversion: 6 */
 
 const passport = require('passport');
 
 module.exports = function (data) {
     return {
         loginLocal(req, res, next) {
-            const auth = passport.authenticate('local', function (error, user) {
-                if(error) {
+            const auth = passport.authenticate('local', (error, user) => {
+                if (error) {
                     next(error);
                     return;
                 }
 
-                if(!user) {
+                if (user === false) {
                     res.json({
                         success: false,
                         message: 'Invalid name or password!'
                     });
                 }
 
-                req.login(user, error => {
-                    if(error) {
-                        next(error);
+                req.login(user, err => {
+                    if (err) {
+                        next(err);
                         return;
                     }
 
@@ -32,22 +32,22 @@ module.exports = function (data) {
             auth(req, res, next);
         },
         loginGithub(req, res, next) {
-            const auth = passport.authenticate('github', function (error, user) {
-                if(error) {
+            const auth = passport.authenticate('github', (error, user) => {
+                if (error) {
                     next(error);
                     return;
                 }
 
-                if(!user) {
+                if (user === false) {
                     res.json({
                         success: false,
                         message: 'Invalid name or password!'
                     });
                 }
 
-                req.login(user, error => {
-                    if(error) {
-                        next(error);
+                req.login(user, err => {
+                    if (err) {
+                        next(err);
                         return;
                     }
 
@@ -62,12 +62,11 @@ module.exports = function (data) {
             res.redirect('/home');
         },
         register(req, res) {
-
             let username = req.body.username;
             let password = req.body.password;
 
-            data.createUser(username,password)
-                .then(dbUser => {
+            data.createUser(username, password)
+                .then(() => {
                     return res.redirect('/signin');
                 })
                 .catch(error => res.status(500).json(error));

@@ -1,11 +1,11 @@
-/*globals require module  */
-/*jshint esversion: 6 */
+/* globals require module  */
+/* jshint esversion: 6 */
 
 const mongoose = require('mongoose');
-const mongooseSchema = mongoose.Schema;
+const MongooseSchema = mongoose.Schema;
 
 module.exports.register = function(name, schemaProperties) {
-    let schema = new mongooseSchema(schemaProperties, {
+    let schema = new MongooseSchema(schemaProperties, {
         timestamps: true
     });
 

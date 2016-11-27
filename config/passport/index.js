@@ -1,13 +1,13 @@
 /* globals module require */
 
 const passport = require('passport');
-const localStrategy = require('passport-local').Strategy;
+const LocalStrategy = require('passport-local').Strategy;
 
 module.exports = function(app, data) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    const strategy = new localStrategy((username, password, done) => {
+    const strategy = new LocalStrategy((username, password, done) => {
         data.findByUsername(username, password)
             .then(user => {
                 if (user) {
@@ -23,7 +23,7 @@ module.exports = function(app, data) {
 
     passport.serializeUser((user, done) => {
         if (user) {
-            done(null, user._id);
+            done(null, user.id);
         }
     });
 
