@@ -1,8 +1,5 @@
-
 module.exports = function(models) {
-    let {
-        User
-    } = models;
+    let { User } = models;
 
     return {
         findByUsername(username, password) {
@@ -16,6 +13,7 @@ module.exports = function(models) {
                 });
             });
         },
+
         findUserById(id) {
             return new Promise((resolve, reject) => {
                 User.findOne({ _id: id }, (err, user) => {

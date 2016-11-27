@@ -1,0 +1,7 @@
+extends ../main/_layout
+
+block content
+    form.col-xs-2(action="/forums/topics/create" method="post")
+        input.form-control(type="text" name="topic-name" placeholder="Enter a name of the topic")
+        button.btn.btn-success
+            | Create Topic

@@ -1,9 +1,9 @@
 /* globals module require */
 
-const passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
-module.exports = function({ app, data }) {
+module.exports = function(app, data) {
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -23,7 +23,7 @@ module.exports = function({ app, data }) {
 
     passport.serializeUser((user, done) => {
         if (user) {
-            done(null, user._id);
+            done(null, user.id);
         }
     });
 

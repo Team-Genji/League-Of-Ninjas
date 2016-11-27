@@ -1,14 +1,13 @@
-/*globals require module  */
-/*jshint esversion: 6 */
+/* globals require module*/
+/* jshint esversion: 6 */
 
-const fs = require('fs'),
-    path = require('path');
+const fileWalker = require('../utils/file-system-utils').walkDirectorySync;
 
-module.exports = function({ app, data }) {
-    fs.readdirSync(__dirname)
-        .filter(file => file.includes('-routes'))
-        .forEach(file => {
-            const modulePath = path.join(__dirname, file);
-            require(modulePath)({ app, data });
-        });
+module.exports = function (app, data) {
+    fileWalker(__dirname, file => {
+        if (file.includes('-route')) {
+            const modulePath = file;
+            require(modulePath)(app, data);
+        }
+    });
 };

@@ -1,12 +1,15 @@
-extends ../node_modules/pug-bootstrap/_bootstrap
+extends ../../node_modules/pug-bootstrap/_bootstrap
 
 
 block body
 	// Static navbar
-	+navbar-static("League of Ninjas","navbar")
-		+nav_item("#","active") Home
+	+navbar
+		+nav_item("/home")
+			| League of Ninjas
+		+nav_item("/forums")
+			| Forums
 		if user
-		
+
 		else
 		+nav_item_dropdown("#")(label="Sign in/Sign up")
 			li.dropdown
