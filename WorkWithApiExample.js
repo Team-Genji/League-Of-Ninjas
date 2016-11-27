@@ -34,7 +34,7 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy'], 'eune')
         console.log('------------------');
     })
 
-lolApiRequester.user.getSummonersInfo(['Funnnyyy', ], 'eune')
+lolApiRequester.user.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
     .then(res => {
         console.log('------------------');
         console.log('Summoner info');
