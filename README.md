@@ -6,7 +6,7 @@ The **LoN** project is a website which provides you with a lot of data about all
 ### Setup instructions
 **1.** npm install - this installs all packages and bower
 
-**2.** npm postinstall - this installs everything needed from bower
+**2.** npm run postinstall - this installs everything needed from bower
 
 **3.** mongodb server needs to be started before running the app
 
