@@ -15,7 +15,7 @@ function getSummonersInfo(summonerNames, region, authKey) {
 
 function getSummonersLeague(summonerIds, region, authKey) {
     let summonerIdsString = summonerIds.join(commonConstants.QUERY_STRING_SEPARATOR);
-    let requestUrl = format(requestUrls.MULTIPLE_SUMMONER_LEAGUE_INFO_BY_ID, region, summonerIdsString, authKey);
+    let requestUrl = format(requestUrls.MULTIPLE_SUMMONERS_LEAGUE_INFO_BY_ID, region, summonerIdsString, authKey);
     return requester.getJSON(requestUrl);
 }
 
