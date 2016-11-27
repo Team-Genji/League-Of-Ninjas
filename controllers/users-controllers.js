@@ -24,6 +24,9 @@ module.exports = function (data) {
         },
         getRegister(req, res) {
             return res.render('signup');
+        },
+        getSummonerInfo(req, res) {
+            return res.render('summonerinfo');
         }
     };
 };

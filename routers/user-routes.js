@@ -18,6 +18,7 @@ module.exports= function({app,data}){
     .get('/signup', usersController.getRegister)  //get Sign up view (login)
     .post('/signup', authController.register)  // post Sign up data (register)
     .get('/profile', usersController.getProfile) // get profile view
+    .get('/summonerinfo', usersController.getSummonerInfo) //get summonerinfo view
     .get('/unauthorized', usersController.getUnauthorized);
 
     app.use(router);
