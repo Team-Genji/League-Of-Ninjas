@@ -13,7 +13,7 @@ module.exports = function (data) {
                 }
 
                 if(!user) {
-                    res.json({ 
+                    res.json({
                         success: false,
                         message: 'Invalid name or password!'
                     });
@@ -39,7 +39,7 @@ module.exports = function (data) {
                 }
 
                 if(!user) {
-                    res.json({ 
+                    res.json({
                         success: false,
                         message: 'Invalid name or password!'
                     });
@@ -62,10 +62,10 @@ module.exports = function (data) {
             res.redirect('/home');
         },
         register(req, res) {
-          
+
             let username = req.body.username;
             let password = req.body.password;
-       
+
             data.createUser(username,password)
                 .then(dbUser => {
                     return res.redirect('/signin');

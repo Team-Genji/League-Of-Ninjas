@@ -1,27 +1,28 @@
 /*globals require module  */
 /*jshint esversion: 6 */
 
-const fs = require('fs'),
-    path = require('path'),
-    mongoose = require('mongoose');
+const mongoose = require('mongoose'),
+    fileWalker = require('../utils/file-system-utils').walkDirectorySync,
+    user = require('../models/user-model');
 
-module.exports = function(connectionString) {
+module.exports = function (connectionString) {
     mongoose.Promise = global.Promise;
     mongoose.connect(connectionString);
 
-    let User = require('../models/user-model');
-    let models = { User };
+    let models = {
+        user
+    };
     let data = {};
 
-    fs.readdirSync(__dirname)
-        .filter(file => file.includes('-data'))
-        .forEach(file => {
-            let modulePath = path.join(__dirname, file);
-            let dataModule = require(modulePath)(models);
+    fileWalker(__dirname, (module) => {
+        if (module.includes('-route')) {
+            let dataModule = require(module)(models);
             Object.keys(dataModule)
                 .forEach(key => {
                     data[key] = dataModule[key];
                 });
-        });
+        }
+    });
+
     return data;
 };

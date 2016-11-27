@@ -1,8 +1,8 @@
 /*globals require module  */
 /*jshint esversion: 6 */
 
-const createUsersController = require('../controllers/users-controllers'),
-    createAuthController = require('../controllers/auth-controllers'),
+const createUsersController = require('../controllers/users-controller'),
+    createAuthController = require('../controllers/auth-controller'),
     router = require('express').Router();
 
 module.exports= function({ app, data }){
