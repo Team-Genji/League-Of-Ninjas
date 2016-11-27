@@ -1,13 +1,13 @@
 /* globals module require */
 
-const passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
+const passport = require('passport');
+const localStrategy = require('passport-local').Strategy;
 
-module.exports = function({ app, data }) {
+module.exports = function(app, data) {
     app.use(passport.initialize());
     app.use(passport.session());
 
-    const strategy = new LocalStrategy((username, password, done) => {
+    const strategy = new localStrategy((username, password, done) => {
         data.findByUsername(username, password)
             .then(user => {
                 if (user) {

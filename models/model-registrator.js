@@ -2,13 +2,13 @@
 /*jshint esversion: 6 */
 
 const mongoose = require('mongoose');
-
-let Schema = mongoose.Schema;
+const mongooseSchema = mongoose.Schema;
 
 module.exports.register = function(name, schemaProperties) {
-    let schema = new Schema(schemaProperties, {
+    let schema = new mongooseSchema(schemaProperties, {
         timestamps: true
     });
+
     mongoose.model(name, schema);
     return mongoose.model(name);
 };

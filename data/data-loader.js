@@ -1,9 +1,9 @@
 /*globals require module  */
 /*jshint esversion: 6 */
 
-const mongoose = require('mongoose'),
-    fileWalker = require('../utils/file-system-utils').walkDirectorySync,
-    user = require('../models/user-model');
+const mongoose = require('mongoose');
+const fileWalker = require('../utils/file-system-utils').walkDirectorySync;
+const user = require('../models/user-model');
 
 module.exports = function (connectionString) {
     mongoose.Promise = global.Promise;

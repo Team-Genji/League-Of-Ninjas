@@ -2,8 +2,8 @@
 
 module.exports = function (data) {
     return {
-        listTopics(req, res) {
-            res.render('./forums/forum-main');
+        resolve(req, res) {
+            res.redirect('/home');
         }
     };
 };
