@@ -1,4 +1,4 @@
-/* globals module require Promise*/
+/* globals module require*/
 'use strict';
 
 const format = require('string-format');
@@ -19,6 +19,10 @@ function getSummonersLeague(summonerIds, region, authKey) {
     return requester.getJSON(requestUrl);
 }
 
+module.exports = {
+    getSummonersInfo,
+    getSummonersLeague
+}
 
 //==================================
 //=         Sample Usage           =
