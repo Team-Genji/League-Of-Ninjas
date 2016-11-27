@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 
+const commonConstants = require('../config/constants/common');
 const BasicApirequster = require('./requester-abstract').BasicApiRequester;
 
 const requestsFilter = '-requester'
@@ -16,14 +17,14 @@ class LoLApiRequester extends BasicApirequster {
         fs.readdirSync(__dirname)
             .filter(fileName => fileName.indexOf(requestsFilter) >= 0)
             .forEach(fileName => {
-                const requester = require(__dirname + "/" + fileName).create(this._requester, this._authKeyProvider);
+                const requester = require(__dirname + commonConstants.DIRECTORY_SEPARATOR + fileName).create(this._requester, this._authKeyProvider);
                 const moduleName = fileName.substring(0, fileName.indexOf(requestsFilter));
 
-                this['_' + moduleName] = requester;
+                this[commonConstants.PRIVATE_FIELD_IDENTIFIER + moduleName] = requester;
 
                 Object.defineProperty(this, moduleName, {
                     get: function() {
-                        return this['_' + moduleName];
+                        return this[commonConstants.PRIVATE_FIELD_IDENTIFIER + moduleName];
                     }
                 })
             });
