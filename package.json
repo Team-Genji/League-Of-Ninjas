@@ -1,15 +1,18 @@
 {
-  "name": "superhero-uni",
+  "name": "league-of-ninjas",
   "version": "1.0.0",
-  "description": "You are given a few simple tasks in order to exercise the skills learned through the lectures from the **Web applications with Node.js** course. The main goal is to improve your knowledge on using [Express](http://expressjs.com), [Pug](http://pugjs.com) and [MongoDB](http://mongodb.org), all that in a Node.js environment.",
-  "main": "index.js",
+  "description": "A project by Team Genji.",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "./node_modules/.bin/nodemon app.js",
+    "postinstall": "./node_modules/.bin/bower install --allow-root",
+    "test": "./node_modules/.bin/eslint ."
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Tea Genji",
+  "license": "GPLv3",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "bower": "^1.8.0",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
