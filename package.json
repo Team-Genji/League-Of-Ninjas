@@ -21,7 +21,8 @@
     "passport-local": "^1.0.0",
     "pug": "^2.0.0-beta6",
     "pug-bootstrap": "0.0.4",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "string-format": "^0.5.0"
   },
   "devDependencies": {
     "eslint": "^3.10.2",
