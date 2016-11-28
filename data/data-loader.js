@@ -3,13 +3,15 @@
 const mongoose = require('mongoose');
 const fileWalker = require('../utils/file-system-utils').walkDirectorySync;
 const User = require('../models/user-model');
+const Forum = require('../models/forums/forum-model');
 
-module.exports = function(connectionString) {
+module.exports = function (connectionString) {
     mongoose.Promise = global.Promise;
     mongoose.connect(connectionString);
 
     let models = {
-        User
+        User,
+        Forum
     };
     let data = {};
 

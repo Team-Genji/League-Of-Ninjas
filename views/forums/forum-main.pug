@@ -2,7 +2,14 @@ extends ../main/_layout
 
 block content
     div.text-center
-        form.pagination(action="/forums/topics/create" method="post")
-            input.form-control(type="text" name="topic-name" placeholder="Enter a name of the topic")
+        ul.list.text-center
+        each mod in models
+            li
+                .list-item-container
+                    strong
+                        = mod.name
+
+        form.pagination(action="./forums/create" method="post")
+            input.form-control(type="text" name="name" placeholder="Enter a name of the forum")
             button.btn.btn-success
-                | Create Topic
+                | Create Forum
