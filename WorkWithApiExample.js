@@ -7,7 +7,7 @@ let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
 
-lolApiRequester.user.getSummonersInfo(['Funnnyyy'], 'eune')
+lolApiRequester.summoner.getSummonersInfo(['Funnnyyy'], 'eune')
     .then(res => {
         console.log('------------------');
         console.log('Summoner info');
@@ -33,7 +33,7 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy'], 'eune')
         console.log('------------------');
     });
 
-lolApiRequester.user.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
+lolApiRequester.summoner.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
     .then(res => {
         console.log('------------------');
         console.log('Summoner info');
@@ -50,7 +50,7 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
         return summonerIds;
     })
     .then(ids => {
-        return lolApiRequester.user.getSummonersLeague(ids, 'eune');
+        return lolApiRequester.summoner.getSummonersLeague(ids, 'eune');
     })
     .then(res => {
         console.log('------------------');
