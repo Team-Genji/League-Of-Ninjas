@@ -1,9 +1,8 @@
 extends main/_layout
 
 block content
-    .row
-        .col-xs-offset-1.col-xs-10.col-sm-offset-4.col-sm-4
-            form(action="/summonerinfo" method="post")
-                input.form-control(type="text" name="name" placeholder="Enter Summoner Name")
-                button.btn.btn-success.col-xs-12
-                    | Search Summoner
+    div.text-center
+        form.pagination(action="/summonerinfo" method="post")
+            input.form-control(type="text" name="name" placeholder="Enter Summoner Name")
+            button.btn.btn-success
+                | Search Summoner
