@@ -1,6 +1,4 @@
-/* jshint esversion: 6 */
-
-const modelRegistrator = require('./model-registrator');
+const modelRegistrator = require('./utils/model-registrator');
 
 module.exports = modelRegistrator.register('User', {
     username: {

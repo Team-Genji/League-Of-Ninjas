@@ -1,7 +1,15 @@
 extends ../main/_layout
 
 block content
-    form.col-xs-2(action="/forums/topics/create" method="post")
-        input.form-control(type="text" name="topic-name" placeholder="Enter a name of the topic")
-        button.btn.btn-success
-            | Create Topic
+    div.text-center
+        ul.list.text-center
+        each mod in models
+            li
+                .list-item-container
+                    strong
+                        = mod.name
+
+        form.pagination(action="./forums/create" method="post")
+            input.form-control(type="text" name="name" placeholder="Enter a name of the forum")
+            button.btn.btn-success
+                | Create Forum
