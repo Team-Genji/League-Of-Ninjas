@@ -1,7 +1,6 @@
-/* globals require module  */
 /* jshint esversion: 6 */
 
-module.exports = function (app, data) {
+module.exports = function(app, data) {
     let authController = require('../controllers/auth-controller')(data);
     let usersController = require('../controllers/users-controller')(data);
     let leagueinfocontroller = require('../controllers/league-info-controller')(data);

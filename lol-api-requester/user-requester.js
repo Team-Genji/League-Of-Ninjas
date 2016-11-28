@@ -1,6 +1,3 @@
-/* globals module require*/
-'use strict';
-
 const format = require('string-format');
 
 const BasicApiRequester = require('./requester-abstract').BasicApiRequester,
@@ -8,11 +5,6 @@ const BasicApiRequester = require('./requester-abstract').BasicApiRequester,
     commonConstants = require('../config/constants/common');
 
 class UserRequester extends BasicApiRequester {
-
-    constructor(...args) {
-        super(...args);
-    }
-
     getSummonersInfo(summonerNames, region) {
         let summonerNamesString = summonerNames.join(commonConstants.QUERY_STRING_SEPARATOR);
         let requestUrl = format(requestUrls.MULTIPLE_SUMMONERS_INFO_BY_USERNAME, region, summonerNamesString, this._authKeyProvider.nextKey);
@@ -28,36 +20,37 @@ class UserRequester extends BasicApiRequester {
 
 module.exports.create = function(...args) {
     return new UserRequester(...args);
-}
+};
 
 module.exports.UserRequester = UserRequester;
 
-//==================================
-//=         Sample Usage           =
-//==================================
+// ==================================
+// =         Sample Usage           =
+// ==================================
 
 // getSummonersInfo(['Default Idiot', 'RS Kaliente'], 'eune')
 //     .then(res => {
-//         let summoners = []
+//         let summoners = [];
 //         Object.keys(res.body).forEach(key => {
 //             summoners.push(res.body[key]);
-//         })
+//         });
 
 //         return summoners;
-//     }).then(players => {
+//     })
+//     .then(players => {
 //         let summonerIds = [];
 //         for (let item of players) {
 //             console.log('-----------------------------');
 //             console.log(item);
 
-//             summonerIds.push(item.id)
+//             summonerIds.push(item.id);
 //         }
 
 //         return summonerIds;
 //     })
 //     .then(ids => {
-//         return getSummonersLeague(ids, 'eune')
+//         return getSummonersLeague(ids, 'eune');
 //     })
 //     .then(result => {
 //         console.log(result.body);
-//     })
+//     });

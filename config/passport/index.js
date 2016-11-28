@@ -1,5 +1,3 @@
-/* globals module require */
-
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 

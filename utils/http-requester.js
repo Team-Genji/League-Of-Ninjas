@@ -1,7 +1,4 @@
-/* globals module require Promise */
-'use strict';
-
-const request = require("request");
+const request = require('request');
 
 function get(url) {
     let promise = new Promise((resolve, reject) => {
@@ -18,7 +15,7 @@ function get(url) {
 
 function getJSON(url) {
     let requestHeader = {
-        url: url,
+        url,
         json: true
     };
 

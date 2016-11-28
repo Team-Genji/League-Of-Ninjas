@@ -1,5 +1,3 @@
-/* globals module */
-
 class BasicApiRequester {
     constructor(requester, authKeyProvider) {
         this._requester = requester;

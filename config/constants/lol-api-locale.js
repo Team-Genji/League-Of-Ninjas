@@ -1,5 +1,3 @@
-/* globals module require*/
-
 const REGIONS = {
     BR: 'br',
     EUNE: 'eune',
@@ -12,7 +10,7 @@ const REGIONS = {
     OCE: 'oce',
     RU: 'ru',
     TR: 'tr'
-}
+};
 
 const PLATFORMS = {
     [REGIONS.BR]: 'BR1',
@@ -26,8 +24,9 @@ const PLATFORMS = {
     [REGIONS.OCE]: 'OC1',
     [REGIONS.RU]: 'RU',
     [REGIONS.TR]: 'TR1'
-}
+};
+
 module.exports = {
     REGIONS,
     PLATFORMS
-}
+};

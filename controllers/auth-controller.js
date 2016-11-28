@@ -1,9 +1,8 @@
-/* globals require module  */
 /* jshint esversion: 6 */
 
 const passport = require('passport');
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         loginLocal(req, res, next) {
             const auth = passport.authenticate('local', (error, user) => {

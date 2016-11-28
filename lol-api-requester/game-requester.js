@@ -1,18 +1,10 @@
-/* globals module require*/
-'use strict';
-
 const format = require('string-format');
 
 const BasicApiRequester = require('./requester-abstract').BasicApiRequester,
     requestUrls = require('../config/constants/lol-api-urls'),
-    commonConstants = require('../config/constants/common'),
     localeConstants = require('../config/constants/lol-api-locale');
 
 class GameRequester extends BasicApiRequester {
-    constructor(...args) {
-        super(...args);
-    }
-
     getGameInfo(summonerId, region) {
         let requestUrl = format(requestUrls.CURRENT_GAME_INFO_BY_USER_ID, region, localeConstants.PLATFORMS[region], summonerId, this._authKeyProvider.nextKey);
         return this._requester.getJSON(requestUrl);
@@ -25,11 +17,11 @@ module.exports.create = function(...args) {
 
 module.exports.GameRequester = GameRequester;
 
-//==================================
-//=         Sample Usage           =
-//==================================
+// ==================================
+// =         Sample Usage           =
+// ==================================
 
 // getGameInfo('27154907', 'eune')
 //     .then(result => {
 //         console.log(result.body);
-//     })
+//     });

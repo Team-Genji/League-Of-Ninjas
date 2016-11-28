@@ -1,5 +1,3 @@
-/* globals require console */
-
 const authKeys = require('./config/constants/lol-api-auth').AUTH_KEYS,
     keyProviderFactory = require('./utils/key-provider'),
     requester = require('./utils/http-requester'),
@@ -19,8 +17,9 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy'], 'eune')
 
         let summonerIds = [];
         Object.keys(res.body).forEach(key => {
-            summonerIds.push(res.body[key].id)
-        })
+            summonerIds.push(res.body[key].id);
+        });
+
         return summonerIds[0];
     })
     .then(id => {
@@ -32,7 +31,7 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy'], 'eune')
         console.log('-------');
         console.log(res.body);
         console.log('------------------');
-    })
+    });
 
 lolApiRequester.user.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
     .then(res => {
@@ -45,8 +44,8 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
         let summonerIds = [];
 
         Object.keys(res.body).forEach(key => {
-            summonerIds.push(res.body[key].id)
-        })
+            summonerIds.push(res.body[key].id);
+        });
 
         return summonerIds;
     })
@@ -59,4 +58,4 @@ lolApiRequester.user.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
         console.log('-------');
         console.log(res.body);
         console.log('------------------');
-    })
+    });
