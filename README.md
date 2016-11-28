@@ -10,4 +10,4 @@ The **LoN** project is a website which provides you with a lot of data about all
 
 **3.** mongodb server needs to be started before running the app
 
-**4.** starting the project is as easy as runnning **node app.js**
+**4.** starting the project is as easy as runnning **npm start**

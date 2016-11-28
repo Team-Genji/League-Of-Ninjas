@@ -1,31 +1,32 @@
 {
-  "name": "league-of-ninjas",
-  "version": "1.0.0",
-  "description": "A project by Team Genji.",
-  "main": "app.js",
-  "scripts": {
-    "dev": "./node_modules/.bin/nodemon app.js",
-    "postinstall": "./node_modules/.bin/bower install --allow-root",
-    "test": "./node_modules/.bin/eslint ."
-  },
-  "author": "Tea Genji",
-  "license": "GPLv3",
-  "dependencies": {
-    "body-parser": "^1.15.2",
-    "bower": "^1.8.0",
-    "cookie-parser": "^1.4.3",
-    "express": "^4.14.0",
-    "express-session": "^1.14.2",
-    "mongoose": "^4.7.0",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0",
-    "pug": "^2.0.0-beta6",
-    "pug-bootstrap": "0.0.4",
-    "request": "^2.79.0",
-    "string-format": "^0.5.0"
-  },
-  "devDependencies": {
-    "eslint": "^3.10.2",
-    "nodemon": "^1.11.0"
-  }
+    "name": "league-of-ninjas",
+    "version": "1.0.0",
+    "description": "A project by Team Genji.",
+    "main": "app.js",
+    "scripts": {
+        "dev": "./node_modules/.bin/nodemon app.js",
+        "postinstall": "./node_modules/.bin/bower install --allow-root",
+        "test": "./node_modules/.bin/eslint .",
+        "start": "node app.js"
+    },
+    "author": "Tea Genji",
+    "license": "GPLv3",
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "bower": "^1.8.0",
+        "cookie-parser": "^1.4.3",
+        "express": "^4.14.0",
+        "express-session": "^1.14.2",
+        "mongoose": "^4.7.0",
+        "passport": "^0.3.2",
+        "passport-local": "^1.0.0",
+        "pug": "^2.0.0-beta6",
+        "pug-bootstrap": "0.0.4",
+        "request": "^2.79.0",
+        "string-format": "^0.5.0"
+    },
+    "devDependencies": {
+        "eslint": "^3.10.2",
+        "nodemon": "^1.11.0"
+    }
 }
