@@ -1,5 +1,3 @@
-/* jshint esversion: 6 */
-
 module.exports = function() {
     return {
         home(req, res) {

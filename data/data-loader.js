@@ -1,5 +1,3 @@
-/* jshint esversion: 6 */
-
 const mongoose = require('mongoose');
 const fileWalker = require('../utils/file-system-utils').walkDirectorySync;
 const User = require('../models/user-model');

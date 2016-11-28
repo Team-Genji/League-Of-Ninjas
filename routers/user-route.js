@@ -1,9 +1,7 @@
-/* jshint esversion: 6 */
-
 module.exports = function(app, data) {
-    let authController = require('../controllers/auth-controller')(data);
-    let usersController = require('../controllers/users-controller')(data);
-    let leagueinfocontroller = require('../controllers/league-info-controller')(data);
+    let authController = require('../controllers/user/auth-controller')(data);
+    let usersController = require('../controllers/user/users-controller')(data);
+    let leagueinfocontroller = require('../controllers/league/league-info-controller')(data);
 
     app
         .get('/signin', usersController.getLogin)

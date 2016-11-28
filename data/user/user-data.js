@@ -1,5 +1,3 @@
-/* jshint esversion: 6 */
-
 const userExistsErrorCode = 11000;
 const userExistsErrorMessage = 'User with this username aleready exists!';
 
