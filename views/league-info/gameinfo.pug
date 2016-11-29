@@ -1,0 +1,8 @@
+extends ../main/_layout
+
+block content
+    div.text-center
+        form.pagination(action="/gameinfo" method="post")
+            input.form-control(type="text" name="name" placeholder="Enter Summoner Name")
+            button.btn.btn-success
+                | Search Game
