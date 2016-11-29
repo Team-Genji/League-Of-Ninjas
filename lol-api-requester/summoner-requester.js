@@ -4,7 +4,7 @@ const BasicApiRequester = require('./requester-abstract').BasicApiRequester,
     requestUrls = require('../config/constants/lol-api-urls'),
     commonConstants = require('../config/constants/common');
 
-class UserRequester extends BasicApiRequester {
+class SummonerRequester extends BasicApiRequester {
     getSummonersInfo(summonerNames, region) {
         let summonerNamesString = summonerNames.join(commonConstants.QUERY_STRING_SEPARATOR);
         let requestUrl = format(requestUrls.MULTIPLE_SUMMONERS_INFO_BY_USERNAME, region, summonerNamesString, this._authKeyProvider.nextKey);
@@ -19,10 +19,10 @@ class UserRequester extends BasicApiRequester {
 }
 
 module.exports.create = function(...args) {
-    return new UserRequester(...args);
+    return new SummonerRequester(...args);
 };
 
-module.exports.UserRequester = UserRequester;
+module.exports.UserRequester = SummonerRequester;
 
 // ==================================
 // =         Sample Usage           =

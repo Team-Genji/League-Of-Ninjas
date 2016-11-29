@@ -18,12 +18,13 @@ class LoLApiRequester extends BasicApirequster {
             .forEach(fileName => {
                 const requester = require(path.join(__dirname, fileName)).create(this._requester, this._authKeyProvider);
                 const moduleName = fileName.substring(0, fileName.indexOf(requestsFilter));
+                const privateModuleField = commonConstants.PRIVATE_FIELD_IDENTIFIER + moduleName;
 
-                this[commonConstants.PRIVATE_FIELD_IDENTIFIER + moduleName] = requester;
+                this[privateModuleField] = requester;
 
                 Reflect.defineProperty(this, moduleName, {
                     get: () => {
-                        return this[commonConstants.PRIVATE_FIELD_IDENTIFIER + moduleName];
+                        return this[privateModuleField];
                     }
                 });
             });
