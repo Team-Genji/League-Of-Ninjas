@@ -16,6 +16,49 @@ class SummonerRequester extends BasicApiRequester {
         let requestUrl = format(requestUrls.MULTIPLE_SUMMONERS_LEAGUE_INFO_BY_ID, region, summonerIdsString, this._authKeyProvider.nextKey);
         return this._requester.getJSON(requestUrl);
     }
+
+    getFullSummonersInfo(summonerNames, region) {
+        let promise = new Promise((resolve, reject) => {
+            this.getSummonersInfo(summonerNames, region)
+                .then(res => {
+                    let summonerIds = [];
+                    let summonersInfo = res.body;
+
+                    Object.keys(summonersInfo).forEach(key => {
+                        summonerIds.push(summonersInfo[key].id);
+                    });
+
+                    return { summonerIds, summonersInfo };
+                })
+                .then(res => {
+                    return Promise.all([this.getSummonersLeague(res.summonerIds, region), res.summonersInfo]);
+                })
+                .then(res => {
+                    let summonersLeagueInfoResponse = res[0];
+                    let summonersLeagueInfo = summonersLeagueInfoResponse.body;
+                    let summonersInfo = res[1];
+
+                    let summonersFullInfo = [];
+
+                    Object.keys(summonersInfo).forEach(key => {
+                        let summonerFullInfo = summonersInfo[key];
+                        let summonerId = summonerFullInfo.id;
+                        summonerFullInfo.leagues = summonersLeagueInfo[summonerId];
+                        summonersFullInfo.push(summonerFullInfo);
+                    });
+
+                    return summonersFullInfo;
+                })
+                .then(res => {
+                    resolve(res);
+                })
+                .catch(err => {
+                    reject(err);
+                });
+        });
+
+        return promise;
+    }
 }
 
 module.exports.create = function(...args) {
