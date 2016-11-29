@@ -6,8 +6,12 @@ module.exports = function() {
         getGameInfo(req, res) {
             return res.render('league-info/gameinfo');
         },
+        //needs validation
         getSummonerInfoPage(req, res) {
-            return res.render('league-info/gameinfotest')
+            let summonername = req.body.summonername;
+            let region = req.body.region;
+            
+            return res.render('league-info/summonerinfoget')
         }
     };
 };

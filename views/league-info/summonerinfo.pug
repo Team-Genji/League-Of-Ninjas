@@ -4,5 +4,17 @@ block content
     div.text-center
         form.pagination(action="/summonerinfo" method="post")
             input.form-control(type="text" name="summonername" placeholder="Enter Summoner Name")
-            button.btn.btn-success
+            select.form-contorl(name="region")
+                option(value="BR") BR
+                option(value="EUNE") EUNE
+                option(value="EUW") EUW
+                option(value="JP") JP
+                option(value="KR") KR
+                option(value="LAN") LAN
+                option(value="NA") NA
+                option(value="OCE") OCE
+                option(value="RU") RU
+                option(value="TR") TR
+            p
+            button.btn.btn-success           
                 | Search Summoner
