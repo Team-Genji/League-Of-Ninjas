@@ -7,7 +7,7 @@ let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
 
-module.exports = function () {
+module.exports = function() {
     return {
         getSummonerInfo(req, res) {
             return res.render('league-info/summonerinfo');
@@ -15,18 +15,16 @@ module.exports = function () {
         getGameInfo(req, res) {
             return res.render('league-info/gameinfo');
         },
-        //needs validation
+        // needs validation
         getSummonerInfoPage(req, res) {
             let summonername = [];
             summonername.push(req.body.summonername);
             let region = req.body.region;
             lolApiRequester.summoner.getFullSummonersInfo(summonername, region)
-                .then(res => {
-                    console.log(res);
-                })
-
-
-            return res.render('league-info/summonerinfoget', res)
+                .then(summoner => {
+                    console.log(summoner);
+                    return res.render('league-info/summonerinfoget', summoner[0]);
+                });
         }
     };
 };
