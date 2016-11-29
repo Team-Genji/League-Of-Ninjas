@@ -11,5 +11,6 @@ module.exports = function(app, data) {
         .post('/signup', authController.register)
         .get('/profile', usersController.getProfile)
         .get('/summonerinfo', leagueinfocontroller.getSummonerInfo)
+        .get('/gameinfo', leagueinfocontroller.getGameInfo)
         .get('/unauthorized', usersController.getUnauthorized);
 };
