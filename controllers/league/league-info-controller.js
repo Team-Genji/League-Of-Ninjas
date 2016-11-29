@@ -1,4 +1,13 @@
-module.exports = function() {
+const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
+    keyProviderFactory = require('../../utils/key-provider'),
+    requester = require('../../utils/http-requester'),
+    lolApiRequesterFactory = require('../../lol-api-requester');
+
+let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
+
+let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
+
+module.exports = function () {
     return {
         getSummonerInfo(req, res) {
             return res.render('league-info/summonerinfo');
@@ -8,10 +17,16 @@ module.exports = function() {
         },
         //needs validation
         getSummonerInfoPage(req, res) {
-            let summonername = req.body.summonername;
+            let summonername = [];
+            summonername.push(req.body.summonername);
             let region = req.body.region;
-            
-            return res.render('league-info/summonerinfoget')
+            lolApiRequester.summoner.getFullSummonersInfo(summonername, region)
+                .then(res => {
+                    console.log(res);
+                })
+
+
+            return res.render('league-info/summonerinfoget', res)
         }
     };
 };
