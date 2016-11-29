@@ -5,6 +5,9 @@ module.exports = function() {
         },
         getGameInfo(req, res) {
             return res.render('league-info/gameinfo');
+        },
+        getSummonerInfoPage(req, res) {
+            return res.render('league-info/gameinfotest')
         }
     };
 };
