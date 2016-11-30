@@ -1,19 +1,18 @@
-const format = require('string-format');
-
 const BasicApiRequester = require('./requester-abstract').BasicApiRequester,
     requestUrls = require('../config/constants/lol-api-urls'),
-    commonConstants = require('../config/constants/common');
+    commonConstants = require('../config/constants/common'),
+    stringFormatter = require('../utils/string-formatter');
 
 class SummonerRequester extends BasicApiRequester {
     getSummonersInfo(summonerNames, region) {
         let summonerNamesString = summonerNames.join(commonConstants.QUERY_STRING_SEPARATOR);
-        let requestUrl = format(requestUrls.MULTIPLE_SUMMONERS_INFO_BY_USERNAME, region, summonerNamesString, this._authKeyProvider.nextKey);
+        let requestUrl = stringFormatter.format(requestUrls.MULTIPLE_SUMMONERS_INFO_BY_USERNAME, region, summonerNamesString, this._authKeyProvider.nextKey);
         return this._requester.getJSON(requestUrl);
     }
 
     getSummonersLeague(summonerIds, region) {
         let summonerIdsString = summonerIds.join(commonConstants.QUERY_STRING_SEPARATOR);
-        let requestUrl = format(requestUrls.MULTIPLE_SUMMONERS_LEAGUE_INFO_BY_ID, region, summonerIdsString, this._authKeyProvider.nextKey);
+        let requestUrl = stringFormatter.format(requestUrls.MULTIPLE_SUMMONERS_LEAGUE_INFO_BY_ID, region, summonerIdsString, this._authKeyProvider.nextKey);
         return this._requester.getJSON(requestUrl);
     }
 

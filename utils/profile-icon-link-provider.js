@@ -1,10 +1,10 @@
 const constants = require('../config/constants/lol-urls'),
-    format = require('string-format');
+    stringFormatter = require('./string-formatter'),
+    uriEncoder = require('./uri-encoder');
 
 function getProfileIconLink(summonername, region) {
-    let linksummonername = summonername.replace(/ /g,"%20");
-    let link = format(constants.SUMMONER_ICON_LINK, region, linksummonername);
-    return link;
+    let link = stringFormatter.format(constants.SUMMONER_ICON_LINK, region, summonername);
+    return uriEncoder.encode(link);
 }
 
 module.exports = {
