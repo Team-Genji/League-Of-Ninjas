@@ -4,7 +4,8 @@ module.exports = function (data) {
             data.getForums()
                 .then(forums => {
                     res.render('./forums/forum-main', {
-                        models: forums
+                        models: forums,
+                        user: req.user
                     });
                 })
                 .catch(err => {

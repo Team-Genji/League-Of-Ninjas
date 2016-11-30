@@ -10,10 +10,10 @@ let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authK
 module.exports = function() {
     return {
         getSummonerInfo(req, res) {
-            return res.render('league-info/summonerinfo');
+            return res.render('league-info/summonerinfo', { user: req.user });
         },
         getGameInfo(req, res) {
-            return res.render('league-info/gameinfo');
+            return res.render('league-info/gameinfo', { user: req.user });
         },
         // needs validation
         getSummonerInfoPage(req, res) {

@@ -35,12 +35,20 @@ module.exports = function(data) {
         register(req, res) {
             let username = req.body.username;
             let password = req.body.password;
+            let avatarUrl = req.body.avatarUrl;
 
-            data.createUser(username, password)
+            data.createUser(username, password, avatarUrl)
                 .then(() => {
                     return res.redirect('/signin');
                 })
                 .catch(error => res.status(500).json(error));
+        },
+        isAuthenticated(req, res, next) {
+            if (!req.isAuthenticated()) {
+                return res.status(403).redirect('/unauthorized');
+            }
+
+            next();
         }
     };
 };
