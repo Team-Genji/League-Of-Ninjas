@@ -26,7 +26,10 @@ const PLATFORMS = {
     [REGIONS.TR]: 'TR1'
 };
 
+const SUMMONER_ICON_LINK = 'http://avatar.leagueoflegends.com/{0}/{1}.png'
+
 module.exports = {
     REGIONS,
-    PLATFORMS
+    PLATFORMS,
+    SUMMONER_ICON_LINK
 };
