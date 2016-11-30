@@ -2,7 +2,7 @@ const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
     keyProviderFactory = require('../../utils/key-provider'),
     requester = require('../../utils/http-requester'),
     lolApiRequesterFactory = require('../../lol-api-requester'),
-    iconLinkProvider = require('../../utils/profile-icon-link-provider')
+    iconLinkProvider = require('../../utils/profile-icon-link-provider');
 
 let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
