@@ -24,7 +24,6 @@ function getSummonerIds(summonersInfo) {
 
     return Promise.resolve()
         .then(() => {
-            console.log(summonerIds);
             return summonerIds;
         });
 }
