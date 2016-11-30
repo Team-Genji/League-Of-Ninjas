@@ -1,7 +1,8 @@
 const simpleMatchInfoFields = [
     'gameMode',
     'bannedChampions',
-    'participants'
+    'participants',
+    'platformId'
 ];
 
 const teamIdField = 'teamId';
@@ -17,11 +18,11 @@ const leagueTeams = {
     }
 };
 
-function getSimpleMatchInfo(matchInfo) {
+function getSimpleGameInfo(gameInfo) {
     let simpleMatchInfo = {};
 
     simpleMatchInfoFields.forEach(field => {
-        simpleMatchInfo[field] = matchInfo[field];
+        simpleMatchInfo[field] = gameInfo[field];
     });
 
     return Promise.resolve()
@@ -50,6 +51,6 @@ function devidePlayersByTeams(participants) {
 }
 
 module.exports = {
-    getSimpleMatchInfo,
+    getSimpleGameInfo,
     devidePlayersByTeams
 };
