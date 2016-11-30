@@ -1,10 +1,19 @@
 extends ../main/_layout
 
 block content
-    p #{summoner.id}
-    p #{summoner.name}
-    img(src = summoner.iconLink)
-    p Summoner Level: #{summoner.summonerLevel}
-    each league in summoner.leagues
-            div: strong= league.name
-            div: strong= league.tier
+  div.text-center  
+    strong 
+      p #{summoner.name}
+      p #{summoner.leagues.name}
+      p Summoner Level: <strong>#{summoner.summonerLevel}</strong>
+      img(src = summoner.iconLink)
+      each league in summoner.leagues
+        p League name: #{league.name}
+        p Division: #{league.tier} 
+          each entry in league.entries
+            span #{entry.division}
+            span  #{entry.leaguePoints} LP
+            P.text-success Ranked Wins: #{entry.wins}
+            p.text-danger Ranked Losses: #{entry.losses}
+      button.btn.btn-success
+        | Search Active Game
