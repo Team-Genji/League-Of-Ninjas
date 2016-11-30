@@ -2,13 +2,14 @@ const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
     keyProviderFactory = require('../../utils/key-provider'),
     requester = require('../../utils/http-requester'),
     lolApiRequesterFactory = require('../../lol-api-requester'),
-    iconLinkProvider = require('../../utils/profile-icon-link-provider');
+    lolObjectParser = require('../../lol-api-extensions/parsers/index'),
+    iconLinkProvider = require('../../lol-api-extensions/utils/profile-icon-link-provider');
 
 let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
 
-module.exports = function () {
+module.exports = function() {
     return {
         getSummonerInfo(req, res) {
             return res.render('league-info/summonerinfo');
@@ -22,12 +23,30 @@ module.exports = function () {
             summonername.push(req.body.summonername);
             let region = req.body.region;
             let iconLink = iconLinkProvider.getProfileIconLink(req.body.summonername, region);
-            lolApiRequester.summoner.getFullSummonersInfo(summonername, region)
-                .then(summoners => {
-                    summoners[0].iconLink = iconLink;
-                    return res.render('league-info/summonerinfoget', {
-                        summoner: summoners[0]
-                    });
+            lolApiRequester.summoner.getSummonersInfo(summonername, region)
+                .then(result => {
+                    let summonerInfo = result.body;
+                    if (!summonerInfo) {
+                        throw new Error('Service unavailable');
+                    }
+                    return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo), summonerInfo]);
+                })
+                .then(result => {
+                    let summonerIds = result[0];
+                    let summonerInfo = result[1];
+
+                    return Promise.all([lolApiRequester.summoner.getSummonersLeague(summonerIds, region), summonerInfo]);
+                })
+                .then(result => {
+                    let summonerLeagueInfo = result[0].body;
+                    let summonerInfo = result[1];
+
+                    return lolObjectParser.summonerInfoParser.getFullSummonersInfo(summonerInfo, summonerLeagueInfo);
+                })
+                .then(result => {
+                    let summonerInfo = result[0];
+                    summonerInfo.iconLink = iconLink;
+                    return res.render('league-info/summonerinfoget', { summoner: summonerInfo });
                 })
                 .catch(err => {
                     res

@@ -7,71 +7,55 @@ let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
 
-// lolApiRequester.summoner.getSummonersInfo(['Funnnyyy'], 'eune')
-//     .then(res => {
-//         console.log('------------------');
-//         console.log('Summoner info');
-//         console.log('-------');
-//         console.log(res.body);
-//         console.log('------------------');
-
-//         let summonerIds = [];
-//         Object.keys(res.body).forEach(key => {
-//             summonerIds.push(res.body[key].id);
-//         });
-
-//         return summonerIds[0];
-//     })
-//     .then(id => {
-//         return lolApiRequester.game.getGameInfo(id, 'eune');
-//     })
-//     .then(res => {
-//         console.log('------------------');
-//         console.log('Game info');
-//         console.log('-------');
-//         console.log(res.body);
-//         console.log('------------------');
-//     });
-
-// lolApiRequester.summoner.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
-//     .then(res => {
-//         console.log('------------------');
-//         console.log('Summoner info');
-//         console.log('-------');
-//         console.log(res.body);
-//         console.log('------------------');
-
-//         let summonerIds = [];
-
-//         Object.keys(res.body).forEach(key => {
-//             summonerIds.push(res.body[key].id);
-//         });
-
-//         return summonerIds;
-//     })
-//     .then(ids => {
-//         return lolApiRequester.summoner.getSummonersLeague(ids, 'eune');
-//     })
-//     .then(res => {
-//         console.log('------------------');
-//         console.log('Devision info');
-//         console.log('-------');
-//         console.log(res.body);
-//         console.log('------------------');
-//     });
-
-lolApiRequester.summoner.getFullSummonersInfo(['RS Kaliente'], 'eune')
+lolApiRequester.summoner.getSummonersInfo(['Funnnyyy'], 'eune')
     .then(res => {
         console.log('------------------');
-        console.log('Full Info');
+        console.log('Summoner info');
+        console.log('-------');
+        console.log(res.body);
         console.log('------------------');
-        res.forEach(player => {
-            console.log('------------------');
-            console.log(player);
-            console.log(`${player.name}'s leagues`);
-            player.leagues.forEach(league => {
-                console.log(`\t ${JSON.stringify(league, null, '\t')}`);
-                console.log('\t------------------');
-            });
+
+        let summonerIds = [];
+        Object.keys(res.body).forEach(key => {
+            summonerIds.push(res.body[key].id);
         });
+
+        return summonerIds[0];
+    })
+    .then(id => {
+        return lolApiRequester.game.getGameInfo(id, 'eune');
+    })
+    .then(res => {
+        console.log('------------------');
+        console.log('Game info');
+        console.log('-------');
+        console.log(res.body);
+        console.log('------------------');
+    });
+
+lolApiRequester.summoner.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
+    .then(res => {
+        console.log('------------------');
+        console.log('Summoner info');
+        console.log('-------');
+        console.log(res.body);
+        console.log('------------------');
+
+        let summonerIds = [];
+
+        Object.keys(res.body).forEach(key => {
+            summonerIds.push(res.body[key].id);
+        });
+
+        return summonerIds;
+    })
+    .then(ids => {
+        return lolApiRequester.summoner.getSummonersLeague(ids, 'eune');
+    })
+    .then(res => {
+        console.log('------------------');
+        console.log('Devision info');
+        console.log('-------');
+        console.log(res.body);
+        console.log('------------------');
     });
