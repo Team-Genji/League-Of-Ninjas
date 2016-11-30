@@ -28,32 +28,6 @@ module.exports = function(data) {
 
             auth(req, res, next);
         },
-        loginGithub(req, res, next) {
-            const auth = passport.authenticate('github', (error, user) => {
-                if (error) {
-                    next(error);
-                    return;
-                }
-
-                if (user === false) {
-                    res.json({
-                        success: false,
-                        message: 'Invalid name or password!'
-                    });
-                }
-
-                req.login(user, err => {
-                    if (err) {
-                        next(err);
-                        return;
-                    }
-
-                    res.redirect('/profile');
-                });
-            });
-
-            auth(req, res, next);
-        },
         logout(req, res) {
             req.logout();
             res.redirect('/home');
