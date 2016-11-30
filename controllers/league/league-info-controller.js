@@ -1,13 +1,14 @@
 const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
     keyProviderFactory = require('../../utils/key-provider'),
     requester = require('../../utils/http-requester'),
-    lolApiRequesterFactory = require('../../lol-api-requester');
+    lolApiRequesterFactory = require('../../lol-api-requester'),
+    iconLinkProvider = require('../../utils/profile-icon-link-provider')
 
 let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
 
-module.exports = function() {
+module.exports = function () {
     return {
         getSummonerInfo(req, res) {
             return res.render('league-info/summonerinfo');
@@ -20,8 +21,10 @@ module.exports = function() {
             let summonername = [];
             summonername.push(req.body.summonername);
             let region = req.body.region;
+            let iconLink = iconLinkProvider.getProfileIconLink(req.body.summonername, region);
             lolApiRequester.summoner.getFullSummonersInfo(summonername, region)
                 .then(summoners => {
+                    summoners[0].iconLink = iconLink;
                     return res.render('league-info/summonerinfoget', {
                         summoner: summoners[0]
                     });

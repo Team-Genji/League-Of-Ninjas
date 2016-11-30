@@ -7,4 +7,8 @@ function getProfileIconLink(summonername, region) {
     return link;
 }
 
+module.exports = {
+    getProfileIconLink
+}
+
 //console.log(getProfileIconLink("RS Kaliente", "eune"));
