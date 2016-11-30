@@ -1,5 +1,9 @@
 extends ../main/_layout
 
 block content
-    p #{id}
-    p #{name}
+    p #{summoner.id}
+    p #{summoner.name}
+    img(src="http://avatar.leagueoflegends.com/eune/RS%20Kaliente.png")
+    p Summoner Level: #{summoner.summonerLevel}
+    each league in summoner.leagues
+            div: strong= league.name

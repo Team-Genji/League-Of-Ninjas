@@ -21,9 +21,15 @@ module.exports = function() {
             summonername.push(req.body.summonername);
             let region = req.body.region;
             lolApiRequester.summoner.getFullSummonersInfo(summonername, region)
-                .then(summoner => {
-                    console.log(summoner);
-                    return res.render('league-info/summonerinfoget', summoner[0]);
+                .then(summoners => {
+                    return res.render('league-info/summonerinfoget', {
+                        summoner: summoners[0]
+                    });
+                })
+                .catch(err => {
+                    res
+                        .status(400)
+                        .send(err);
                 });
         }
     };
