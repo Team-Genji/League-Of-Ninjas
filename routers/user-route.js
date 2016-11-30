@@ -10,7 +10,7 @@ module.exports = function(app, data) {
         .post('/signup', authController.register)
         .get('/sign-out', authController.logout)
         .get('/profile', usersController.getProfile)
-        .post('/profile/', authController.isAuthenticated, usersController.nesht)
+        .post('/profile/', authController.isAuthenticated, usersController.updateUser)
         .get('/summonerinfo', leagueinfocontroller.getSummonerInfo)
         .post('/summonerinfo', leagueinfocontroller.getSummonerInfoPage)
         .get('/gameinfo', leagueinfocontroller.getGameInfo)
