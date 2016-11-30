@@ -1,5 +1,7 @@
-const summonerInfoParser = require('./summoner-info-parser');
+const summonerInfoParser = require('./summoner-info-parser'),
+    gameInfoParser = require('./game-info-parser');
 
 module.exports = {
-    summonerInfoParser
+    summonerInfoParser,
+    gameInfoParser
 };

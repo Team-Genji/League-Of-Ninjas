@@ -5,6 +5,9 @@ const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
     lolObjectParser = require('../../lol-api-extensions/parsers/index'),
     iconLinkProvider = require('../../lol-api-extensions/utils/profile-icon-link-provider');
 
+const regularIdField = 'id';
+// const summonerIdField = 'summonerId';
+
 let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
@@ -29,7 +32,7 @@ module.exports = function() {
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
                     }
-                    return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo), summonerInfo]);
+                    return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
                     let summonerIds = result[0];
@@ -41,7 +44,7 @@ module.exports = function() {
                     let summonerLeagueInfo = result[0].body;
                     let summonerInfo = result[1];
 
-                    return lolObjectParser.summonerInfoParser.getFullSummonersInfo(summonerInfo, summonerLeagueInfo);
+                    return lolObjectParser.summonerInfoParser.getFullSummonersInfo(summonerInfo, summonerLeagueInfo, regularIdField);
                 })
                 .then(result => {
                     let summonerInfo = result[0];
