@@ -1,7 +1,6 @@
 module.exports = function(app, data) {
     let authController = require('../controllers/user/auth-controller')(data);
     let usersController = require('../controllers/user/users-controller')(data);
-    let leagueinfocontroller = require('../controllers/league/league-info-controller')(data);
 
     app
         .get('/signin', usersController.getLogin)
@@ -10,8 +9,5 @@ module.exports = function(app, data) {
         .get('/signup', usersController.getRegister)
         .post('/signup', authController.register)
         .get('/profile', usersController.getProfile)
-        .get('/summonerinfo', leagueinfocontroller.getSummonerInfo)
-        .post('/summonerinfo', leagueinfocontroller.getSummonerInfoPage)
-        .get('/gameinfo', leagueinfocontroller.getGameInfo)
         .get('/unauthorized', usersController.getUnauthorized);
 };

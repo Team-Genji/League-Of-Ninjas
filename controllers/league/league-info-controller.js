@@ -4,9 +4,13 @@ const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
     lolApiRequesterFactory = require('../../lol-api-requester'),
     lolObjectParser = require('../../lol-api-extensions/parsers/index'),
     iconLinkProvider = require('../../lol-api-extensions/utils/profile-icon-link-provider');
-
 const regularIdField = 'id';
 // const summonerIdField = 'summonerId';
+
+const queryParams = {
+    summonerName: 'summonername',
+    region: 'region'
+};
 
 let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
@@ -14,19 +18,20 @@ let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authK
 
 module.exports = function() {
     return {
-        getSummonerInfo(req, res) {
-            return res.render('league-info/summonerinfo');
+        getSummonerSearch(req, res) {
+            return res.render('league-info/summonersearch');
         },
-        getGameInfo(req, res) {
+        getGameSearch(req, res) {
             return res.render('league-info/gameinfo');
         },
         // needs validation
-        getSummonerInfoPage(req, res) {
-            let summonername = [];
-            summonername.push(req.body.summonername);
-            let region = req.body.region;
-            let iconLink = iconLinkProvider.getProfileIconLink(req.body.summonername, region);
-            lolApiRequester.summoner.getSummonersInfo(summonername, region)
+        getSummonerInfo(req, res) {
+            let summonerName = req.query[queryParams.summonerName];
+            let summonerNames = [];
+            summonerNames.push(summonerName);
+            let region = req.query[queryParams.region];
+            let iconLink = iconLinkProvider.getProfileIconLink(summonerName, region);
+            lolApiRequester.summoner.getSummonersInfo(summonerNames, region)
                 .then(result => {
                     let summonerInfo = result.body;
                     if (!summonerInfo) {
@@ -49,7 +54,7 @@ module.exports = function() {
                 .then(result => {
                     let summonerInfo = result[0];
                     summonerInfo.iconLink = iconLink;
-                    return res.render('league-info/summonerinfoget', { summoner: summonerInfo });
+                    return res.render('league-info/summonerinfo', { summoner: summonerInfo });
                 })
                 .catch(err => {
                     res
