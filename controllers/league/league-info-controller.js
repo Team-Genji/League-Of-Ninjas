@@ -29,16 +29,17 @@ module.exports = function() {
             let summonerNames = [];
             summonerNames.push(summonerName);
             let region = req.query[queryParams.region];
-            let iconLink = iconLinkProvider.getProfileIconLink(summonerName, region);
             lolApiRequester.summoner.getSummonersInfo(summonerNames, region)
                 .then(result => {
                     let summonerInfo = result.body;
 
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
-                    } else if (summonerInfo.status) {
+                    } else if (summonerInfo.status.message) {
                         throw new Error('Summoner not found');
                     }
+
+                    console.log(summonerInfo);
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
@@ -55,6 +56,7 @@ module.exports = function() {
                 })
                 .then(result => {
                     let summonerInfo = result[0];
+                    let iconLink = iconLinkProvider.getProfileIconLink(summonerInfo.name, region);
                     summonerInfo.iconLink = iconLink;
                     summonerInfo.region = region;
                     console.log(summonerInfo);
@@ -76,7 +78,7 @@ module.exports = function() {
 
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
-                    } else if (summonerInfo.status) {
+                    } else if (summonerInfo.status.message) {
                         throw new Error('Summoner not found');
                     }
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
@@ -90,7 +92,7 @@ module.exports = function() {
                     let gameInfo = result.body;
                     if (!gameInfo) {
                         throw new Error('Service unavailable');
-                    } else if (gameInfo.status) {
+                    } else if (gameInfo.status.message) {
                         throw new Error('Summoner is not an active game');
                     }
 
