@@ -7,7 +7,7 @@ let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
 
-lolApiRequester.summoner.getSummonersInfo(['Funnnyyy'], 'eune')
+lolApiRequester.summoner.getSummonersInfo(['Sleepwalkin'], 'eune')
     .then(res => {
         console.log('------------------');
         console.log('Summoner info');

@@ -2,10 +2,15 @@ extends ../main/_layout
 
 block content
   div.text-center
-    strong 
-      table
-        tr
-         th
-           p #{gameInfo.blue[0].summonerName}
-        
-         
+    strong
+      div.panel-info.panel-default
+        each summoner in gameInfo.blue
+            div.panel-heading(style='color: black')
+              p #{summoner.summonerName} #{summoner.summonerName}
+
+      div.panel-danger.panel-default
+        each summoner in gameInfo.red
+            div.panel-heading(style='color: black')
+              p #{summoner.summonerName} #{summoner.summonerName}
+
+    

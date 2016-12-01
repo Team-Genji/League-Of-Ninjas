@@ -83,13 +83,18 @@ module.exports = function() {
                 })
                 .then(result => {
                     let summonerIds = result[0];
-
+                    console.log(result);
                     return lolApiRequester.game.getGameInfo(summonerIds[0], region);
                 })
                 .then(result => {
-                    let gameInfo = result;
+                    let gameInfo = result.body;
+                    if (!gameInfo) {
+                        throw new Error('Service unavailable');
+                    } else if (gameInfo.status) {
+                        throw new Error('Summoner is not an active game');
+                    }
 
-                    return lolObjectParser.gameInfoParser.getSimpleGameInfo(gameInfo.body);
+                    return lolObjectParser.gameInfoParser.getSimpleGameInfo(gameInfo);
                 })
                 .then(result => {
                     return lolObjectParser.gameInfoParser.devidePlayersByTeams(result.participants);

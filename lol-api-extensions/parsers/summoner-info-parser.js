@@ -26,8 +26,6 @@ function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdFiel
             });
             summonerFullInfo[leaguesField] = summonerLeagueInfo;
             summonersFullInfo.push(summonerFullInfo);
-            console.log(summonerLeagueInfo);
-            console.log(summonersFullInfo);
         });
     }
     return Promise.resolve()
