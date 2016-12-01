@@ -6,6 +6,6 @@ module.exports = modelRegistrator.register('Topic', {
         required: true,
         unique: false
     },
-    // _id, name
+    // _id
     comments: [{}]
 });

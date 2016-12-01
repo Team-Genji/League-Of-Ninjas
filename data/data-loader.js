@@ -3,6 +3,7 @@ const fileWalker = require('../utils/file-system-utils').walkDirectorySync;
 const User = require('../models/user-model');
 const Forum = require('../models/forums/forum-model');
 const Topic = require('../models/forums/topic-model');
+const Comment = require('../models/forums/comment-model');
 
 module.exports = function (connectionString) {
     mongoose.Promise = global.Promise;
@@ -11,7 +12,8 @@ module.exports = function (connectionString) {
     let models = {
         User,
         Forum,
-        Topic
+        Topic,
+        Comment
     };
     let data = {};
 

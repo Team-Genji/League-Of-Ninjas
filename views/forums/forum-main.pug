@@ -5,7 +5,7 @@ block content
         each forum in forums
             div: a(href='/forums/' + forum.id): strong= forum.name
 
-        form.pagination(action="/forums/create" method="post")
+        form.pagination(action="/forums" method="post")
             input.form-control(type="text" name="name" placeholder="Enter a name of the forum")
             button.btn.btn-success
                 | Create Forum
