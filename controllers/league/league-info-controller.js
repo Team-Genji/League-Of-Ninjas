@@ -24,7 +24,6 @@ module.exports = function() {
         getGameSearch(req, res) {
             return res.render('league-info/gameinfo');
         },
-        // needs validation
         getSummonerInfo(req, res) {
             let summonerName = req.query[queryParams.summonerName];
             let summonerNames = [];
@@ -38,10 +37,9 @@ module.exports = function() {
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
                     }
-                    else if (summonerInfo.status){
+                    else if (summonerInfo.status) {
                         throw new Error('Summoner not found');
                     }
-
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
