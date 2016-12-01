@@ -1,0 +1,15 @@
+extends ../main/_layout
+
+block content
+    div.text-center: h1= topic.name
+        div
+            each comment in topic.comments
+                div
+                    a= comment.author
+                        | :&nbsp;
+                    span= comment.content
+
+        form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")
+            textarea.form-control(type="text" name="content" placeholder="Enter a comment")
+            button.btn.btn-success
+                | Add Comment

@@ -1,0 +1,12 @@
+extends ../main/_layout
+
+block content
+    div.text-center: h1= forum.name
+        div
+            each topic in forum.topics
+                div: a(href='/forums/' + forum.id + '/topics/' + topic._id): strong= topic.name
+
+        form.pagination(action='/forums/' + forum.id + '/topics' method="post")
+            input.form-control(type="text" name="name" placeholder="Enter a name of the topic")
+            button.btn.btn-success
+                | Create Topic

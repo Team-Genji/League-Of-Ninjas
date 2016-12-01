@@ -4,10 +4,10 @@ module.exports = function(app, data) {
 
     app
         .get('/signin', usersController.getLogin)
-        .get('/signin', usersController.getLogin)
         .post('/signin', authController.loginLocal)
         .get('/signup', usersController.getRegister)
         .post('/signup', authController.register)
+        .get('/sign-out', authController.logout)
         .get('/profile', usersController.getProfile)
         .get('/unauthorized', usersController.getUnauthorized);
 };

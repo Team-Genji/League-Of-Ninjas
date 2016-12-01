@@ -5,5 +5,7 @@ module.exports = modelRegistrator.register('Topic', {
         type: String,
         required: true,
         unique: false
-    }
+    },
+    // _id
+    comments: [{}]
 });

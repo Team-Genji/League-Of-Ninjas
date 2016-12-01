@@ -19,10 +19,10 @@ let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authK
 module.exports = function() {
     return {
         getSummonerSearch(req, res) {
-            return res.render('league-info/summonersearch');
+            return res.render('league-info/summonersearch', { user: req.user });
         },
         getGameSearch(req, res) {
-            return res.render('league-info/gamesearch');
+            return res.render('league-info/gamesearch', { user: req.user });
         },
         getSummonerInfo(req, res) {
             let summonerName = req.query[queryParams.summonerName];
@@ -58,11 +58,11 @@ module.exports = function() {
                     summonerInfo.iconLink = iconLink;
                     summonerInfo.region = region;
                     console.log(summonerInfo);
-                    return res.render('league-info/summonerinfo', { summoner: summonerInfo });
+                    return res.render('league-info/summonerinfo', { summoner: summonerInfo, user: req.user });
                 })
                 .catch(err => {
                     console.log(err);
-                    return res.render('errorpage', { error: { message: err.message } });
+                    return res.render('errorpage', { error: { message: err.message }, user: req.user });
                 });
         },
         getGameInfo(req, res) {
@@ -101,10 +101,10 @@ module.exports = function() {
                 })
                 .then(result => {
                     let participantsInfo = result;
-                    return res.render('league-info/gameinfo', { gameInfo: participantsInfo });
+                    return res.render('league-info/gameinfo', { gameInfo: participantsInfo, user: req.user });
                 })
                 .catch(err => {
-                    return res.render('errorpage', { error: { message: err.message } });
+                    return res.render('errorpage', { error: { message: err.message }, user: req.user });
                 });
         }
     };
