@@ -4,5 +4,5 @@ module.exports = function(app, data) {
     app
         .get('/forums', controller.listForums)
         .get('/forums/:id', controller.getForumById)
-        .post('/forums/create', controller.createForum);
+        .post('/forums', controller.createForum);
 };

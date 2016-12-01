@@ -44,12 +44,14 @@ module.exports = function (data) {
                 });
         },
         getTopicById(req, res) {
-            let id = req.params.topicId;
+            let topicId = req.params.topicId;
+            let forumId = req.params.forumId;
 
-            return data.getTopicById(id)
+            return data.getTopicById(topicId)
                 .then(topic => {
                     return res.render('./forums/topic-view', {
-                        topic
+                        topic,
+                        forumId
                     });
                 })
                 .catch(error => {
