@@ -8,6 +8,7 @@ module.exports = function (models) {
             let forum = new Forum({
                 name
             });
+
             return new Promise((resolve, reject) => {
                 forum.save(err => {
                     if (err) {
@@ -26,6 +27,19 @@ module.exports = function (models) {
                     }
 
                     return resolve(forums);
+                });
+            });
+        },
+        getForumById(id) {
+            return new Promise((resolve, reject) => {
+                Forum.findOne({
+                    _id: id
+                }, (error, forum) => {
+                    if (error) {
+                        return reject(error);
+                    }
+
+                    return resolve(forum);
                 });
             });
         }

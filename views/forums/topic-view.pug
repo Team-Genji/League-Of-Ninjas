@@ -1,0 +1,7 @@
+extends ../main/_layout
+
+block content
+    div.text-center: h1= topic.name
+        div
+            each comment in topic.comments
+                div: strong= topic.name
