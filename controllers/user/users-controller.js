@@ -1,4 +1,6 @@
-module.exports = function() {
+const usersServices = require('../../data/user/user-data');
+
+module.exports = function(data) {
     return {
         getHome(req, res) {
             res.status(200).send(`
@@ -13,11 +15,15 @@ module.exports = function() {
                 res.status(401).redirect('/unauthorized');
             } else {
                 const user = req.user;
-                res.status(200).send(`Welcome, ${user.username}! Go to <a href='/home'>Home</a>`);
+                return res.render('./user-controls/profile', { user });
             }
         },
         getUnauthorized(req, res) {
             res.send('<h1>Unauthorized!</h1>');
+        },
+        updateUser(req, res) {
+            const settings = req.body;
+            data.updateUserSettings(req.user._id, settings).then(result => res.status(200).json(settings));
         },
         getRegister(req, res) {
             return res.render('./user-controls/signup');

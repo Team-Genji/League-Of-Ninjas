@@ -59,3 +59,19 @@ lolApiRequester.summoner.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune'
         console.log(res.body);
         console.log('------------------');
     });
+
+lolApiRequester.summoner.getFullSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune')
+    .then(res => {
+        console.log('------------------');
+        console.log('Full Info');
+        console.log('------------------');
+        res.forEach(player => {
+            console.log('------------------');
+            console.log(player);
+            console.log(`${player.name}'s leagues`);
+            player.leagues.forEach(league => {
+                console.log(`\t ${JSON.stringify(league, null, '\t')}`);
+                console.log('\t------------------');
+            });
+        });
+    });

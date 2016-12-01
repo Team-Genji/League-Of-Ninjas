@@ -8,13 +8,18 @@ block body
 			| League of Ninjas
 		+nav_item("/forums")
 			| Forums
-		if user
-
-		else
-		+nav_item("signup")
-			| Sign up
-		+nav_item("signin")
-			| Sign in
-		+nav_item("summonerInfo")
+		+nav_item("/summonerinfo")
 			| Summoner Info
+		+nav_item("/gameinfo")
+			| Game Info
+		if user
+			+nav_item_dropdown("#")(label=user.username)
+				li.dropdown
+					+nav_item("profile") View profile
+					+nav_item("sign-out") Sign out
+		else
+			+nav_item_dropdown("#")(label="Sign in/Sign up")
+				li.dropdown
+					+nav_item("signup") Sign up
+					+nav_item("signin") Sign in	
 

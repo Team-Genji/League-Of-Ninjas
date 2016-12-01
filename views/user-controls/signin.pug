@@ -1,9 +1,17 @@
 extends ../main/_layout
 
 block content
-    div.text-center
-        form.pagination(action="/signin" method="post")
-            input.form-control(type="text" name="username" placeholder="Enter Username")
-            input.form-control(type="password" name="password" placeholder="Enter Password")
-            button.btn.btn-success
-                | Sign in
+    .row
+        .col-xs-offset-1.col-xs-10.col-sm-offset-4.col-sm-4
+            form(action="/signin" method="post")
+                div.form-group
+                    label.labelSettings Username
+                    input.form-control(type="text" name="username")
+                div.form-group
+                    label.labelSettings Password
+                    input.form-control(type="text" name="password")
+                button.btn.btn-success.col-xs-6
+                        | Sign in
+            form(action="/" method="get")
+                    button.btn.btn-danger.col-xs-6
+                        | Cancel

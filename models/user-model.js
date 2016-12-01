@@ -9,5 +9,8 @@ module.exports = modelRegistrator.register('User', {
     password: {
         type: String,
         required: true
+    },
+    avatarUrl: {
+        type: String
     }
 });
