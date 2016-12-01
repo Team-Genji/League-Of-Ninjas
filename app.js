@@ -1,5 +1,3 @@
-/* jshint esversion: 6 */
-
 const config = require('./config');
 const data = require('./data')(config.connectionString);
 const app = require('./config/app')(data);

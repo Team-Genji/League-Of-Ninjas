@@ -1,10 +1,10 @@
 module.exports = function (data) {
     return {
         listForums(req, res) {
-            data.getForums()
+            return data.getForums()
                 .then(forums => {
                     res.render('./forums/forum-main', {
-                        models: forums
+                        forums
                     });
                 })
                 .catch(err => {
@@ -18,7 +18,7 @@ module.exports = function (data) {
                 name
             } = req.body;
 
-            data.createForum(name)
+            return data.createForum(name)
                 .then(() => {
                     return res.redirect('/forums');
                 })
@@ -26,6 +26,16 @@ module.exports = function (data) {
                     res
                         .status(400)
                         .send(err);
+                });
+        },
+        getForumById(req, res) {
+            let id = req.params.id;
+
+            return data.getForumById(id)
+                .then(forum => {
+                    return res.render('./forums/topic-list', {
+                        forum
+                    });
                 });
         }
     };

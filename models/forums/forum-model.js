@@ -6,5 +6,6 @@ module.exports = modelRegistrator.register('Forum', {
         required: true,
         unique: false
     },
+    // _id, name
     topics: [{}]
 });
