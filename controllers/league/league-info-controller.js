@@ -34,9 +34,14 @@ module.exports = function() {
             lolApiRequester.summoner.getSummonersInfo(summonerNames, region)
                 .then(result => {
                     let summonerInfo = result.body;
+
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
                     }
+                    else if (summonerInfo.status){
+                        throw new Error('Summoner not found');
+                    }
+
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
@@ -57,9 +62,8 @@ module.exports = function() {
                     return res.render('league-info/summonerinfo', { summoner: summonerInfo });
                 })
                 .catch(err => {
-                    res
-                        .status(400)
-                        .send(err);
+                    console.log(err);
+                    return res.render('errorpage', { error: { message: err.message } });
                 });
         }
     };
