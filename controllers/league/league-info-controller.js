@@ -22,7 +22,7 @@ module.exports = function() {
             return res.render('league-info/summonersearch');
         },
         getGameSearch(req, res) {
-            return res.render('league-info/gameinfo');
+            return res.render('league-info/gamesearch');
         },
         getSummonerInfo(req, res) {
             let summonerName = req.query[queryParams.summonerName];
@@ -61,6 +61,45 @@ module.exports = function() {
                 })
                 .catch(err => {
                     console.log(err);
+                    return res.render('errorpage', { error: { message: err.message } });
+                });
+        },
+        getGameInfo(req, res) {
+            let summonerName = req.query[queryParams.summonerName];
+            let summonerNames = [];
+            summonerNames.push(summonerName);
+            let region = req.query[queryParams.region];
+            lolApiRequester.summoner.getSummonersInfo(summonerNames, region)
+                .then(result => {
+                    let summonerInfo = result.body;
+
+                    if (!summonerInfo) {
+                        throw new Error('Service unavailable');
+                    }
+                    else if (summonerInfo.status) {
+                        throw new Error('Summoner not found');
+                    }
+                    return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
+                })
+                .then(result => {
+                    let summonerIds = result[0];
+                    let summonerInfo = result[1];
+
+                    return Promise.all([lolApiRequester.game.getGameInfo(summonerIds[0], region), summonerInfo]);
+                })
+                .then(result => {
+                    let gameInfo = result[0];
+
+                    return lolObjectParser.gameInfoParser.getSimpleGameInfo(gameInfo.body);
+                })
+                .then(result => {
+                    return lolObjectParser.gameInfoParser.devidePlayersByTeams(result.participants);
+                })
+                .then(result => {
+                    let participantsInfo = result;
+                    return res.render('league-info/gameinfo', { gameInfo: participantsInfo });
+                })
+                .catch(err => {
                     return res.render('errorpage', { error: { message: err.message } });
                 });
         }

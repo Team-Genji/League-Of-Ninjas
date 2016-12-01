@@ -1,20 +1,16 @@
 extends ../main/_layout
 
 block content
-    div.text-center
-        form.pagination(action="/gameinfo" method="post")
-            input.form-control(type="text" name="summonername" placeholder="Enter Summoner Name")
-            select.form-contorl(name="region")
-                option(value="br") BR
-                option(value="eune") EUNE
-                option(value="euw") EUW
-                option(value="jp") JP
-                option(value="kr") KR
-                option(value="lan") LAN
-                option(value="na") NA
-                option(value="oce") OCE
-                option(value="ru") RU
-                option(value="tr") TR
-            p
-            button.btn.btn-success        
-                | Search Game
+  div.text-center
+      strong 
+        p #{gameInfo.blue[0].summonerName}
+        p #{gameInfo.blue[1].summonerName}
+        p #{gameInfo.blue[2].summonerName}
+        p #{gameInfo.blue[3].summonerName}
+        p #{gameInfo.blue[4].summonerName}
+        p #{gameInfo.red[0].summonerName}
+        p #{gameInfo.red[1].summonerName}
+        p #{gameInfo.red[2].summonerName}
+        p #{gameInfo.red[3].summonerName}
+        p #{gameInfo.red[4].summonerName}
+         

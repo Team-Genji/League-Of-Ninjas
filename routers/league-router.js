@@ -4,5 +4,6 @@ module.exports = function(app, data) {
     app
         .get('/summonersearch', leagueinfocontroller.getSummonerSearch)
         .get('/gamesearch', leagueinfocontroller.getGameSearch)
-        .get('/summonerinfo', leagueinfocontroller.getSummonerInfo);
+        .get('/summonerinfo', leagueinfocontroller.getSummonerInfo)
+        .get('/gameinfo', leagueinfocontroller.getGameInfo);
 };
