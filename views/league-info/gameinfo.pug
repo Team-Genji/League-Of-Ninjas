@@ -2,15 +2,10 @@ extends ../main/_layout
 
 block content
   div.text-center
-      strong 
-        p #{gameInfo.blue[0].summonerName}
-        p #{gameInfo.blue[1].summonerName}
-        p #{gameInfo.blue[2].summonerName}
-        p #{gameInfo.blue[3].summonerName}
-        p #{gameInfo.blue[4].summonerName}
-        p #{gameInfo.red[0].summonerName}
-        p #{gameInfo.red[1].summonerName}
-        p #{gameInfo.red[2].summonerName}
-        p #{gameInfo.red[3].summonerName}
-        p #{gameInfo.red[4].summonerName}
+    strong 
+      table
+        tr
+         th
+           p #{gameInfo.blue[0].summonerName}
+        
          

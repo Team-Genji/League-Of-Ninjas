@@ -36,8 +36,7 @@ module.exports = function() {
 
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
-                    }
-                    else if (summonerInfo.status) {
+                    } else if (summonerInfo.status) {
                         throw new Error('Summoner not found');
                     }
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
@@ -57,6 +56,8 @@ module.exports = function() {
                 .then(result => {
                     let summonerInfo = result[0];
                     summonerInfo.iconLink = iconLink;
+                    summonerInfo.region = region;
+                    console.log(summonerInfo);
                     return res.render('league-info/summonerinfo', { summoner: summonerInfo });
                 })
                 .catch(err => {
@@ -75,20 +76,18 @@ module.exports = function() {
 
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
-                    }
-                    else if (summonerInfo.status) {
+                    } else if (summonerInfo.status) {
                         throw new Error('Summoner not found');
                     }
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
                     let summonerIds = result[0];
-                    let summonerInfo = result[1];
 
-                    return Promise.all([lolApiRequester.game.getGameInfo(summonerIds[0], region), summonerInfo]);
+                    return lolApiRequester.game.getGameInfo(summonerIds[0], region);
                 })
                 .then(result => {
-                    let gameInfo = result[0];
+                    let gameInfo = result;
 
                     return lolObjectParser.gameInfoParser.getSimpleGameInfo(gameInfo.body);
                 })

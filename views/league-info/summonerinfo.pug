@@ -8,6 +8,7 @@ block content
         img(src = summoner.iconLink)
         if summoner.leagues
           each league in summoner.leagues
+            p Queue type: #{league.queue}
             p League name: #{league.name}
             p Division: #{league.tier} 
               each entry in league.entries
@@ -15,12 +16,10 @@ block content
                 span  #{entry.leaguePoints} LP
                 P.text-success Ranked Wins: #{entry.wins}
                 p.text-danger Ranked Losses: #{entry.losses}
-                button.btn.btn-success
-                  | Search Active Game
         else
           p League name: No League
           p Division: Unranked
           p.text-success Ranked Wins: 0
           p.text-danger Ranked Losses: 0
-          button.btn.btn-success
-            | Search Active Game
+        a.btn.btn-success(href='/gameinfo?summonername=' + summoner.name + '&region=' + summoner.region)
+          | Search Active Game

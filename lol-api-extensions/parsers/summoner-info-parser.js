@@ -1,4 +1,5 @@
 const leaguesField = 'leagues';
+const queueField = 'queue';
 
 function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdField) {
     let summonersFullInfo = [];
@@ -8,15 +9,25 @@ function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdFiel
         summonersInfo.forEach(summoner => {
             let summonerFullInfo = summoner;
             let summonerId = summoner[summonerIdField];
-            summonersFullInfo[leaguesField] = summonersLeagueInfo[summonerId];
+            let summonerLeagueInfo = summonersLeagueInfo[summonerId];
+            summonerLeagueInfo.forEach((leagueInfo, index) => {
+                summonerLeagueInfo[index][queueField] = summonerLeagueInfo[index][queueField].replace(/_/g, ' ');
+            });
+            summonersFullInfo[leaguesField] = summonerLeagueInfo;
             summonersFullInfo.push(summonerFullInfo);
         });
     } else {
         Object.keys(summonersInfo).forEach(key => {
             let summonerFullInfo = summonersInfo[key];
             let summonerId = summonerFullInfo[summonerIdField];
-            summonerFullInfo[leaguesField] = summonersLeagueInfo[summonerId];
+            let summonerLeagueInfo = summonersLeagueInfo[summonerId];
+            summonerLeagueInfo.forEach((leagueInfo, index) => {
+                summonerLeagueInfo[index][queueField] = summonerLeagueInfo[index][queueField].replace(/_/g, ' ');
+            });
+            summonerFullInfo[leaguesField] = summonerLeagueInfo;
             summonersFullInfo.push(summonerFullInfo);
+            console.log(summonerLeagueInfo);
+            console.log(summonersFullInfo);
         });
     }
     return Promise.resolve()
