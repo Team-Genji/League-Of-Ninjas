@@ -92,14 +92,10 @@ module.exports = function() {
                         throw new Error('Summoner is not in an active game');
                     }
 
-                    return lolObjectParser.gameInfoParser.getSimpleGameInfo(gameInfo);
+                    return lolObjectParser.gameInfoParser.parseGameInfo(gameInfo);
                 })
                 .then(result => {
-                    return lolObjectParser.gameInfoParser.devidePlayersByTeams(result.participants);
-                })
-                .then(result => {
-                    let participantsInfo = result;
-                    return res.render('league-info/gameinfo', { gameInfo: participantsInfo, user: req.user });
+                    return res.render('league-info/gameinfo', { gameInfo: result, user: req.user });
                 })
                 .catch(err => {
                     return res.render('errorpage', { error: { message: err.message }, user: req.user });
