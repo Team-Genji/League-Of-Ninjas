@@ -1,4 +1,4 @@
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         listTopicsInForum(req, res) {
             let {
@@ -8,7 +8,8 @@ module.exports = function (data) {
             return data.getForumById(forumId)
                 .then(forum => {
                     return res.render('./forums/topic-list', {
-                        forum
+                        forum,
+                        user: req.user
                     });
                 })
                 .catch(err => {
@@ -51,7 +52,8 @@ module.exports = function (data) {
                 .then(topic => {
                     return res.render('./forums/topic-view', {
                         topic,
-                        forumId
+                        forumId,
+                        user: req.user
                     });
                 })
                 .catch(error => {
