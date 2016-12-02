@@ -58,6 +58,23 @@ module.exports = function (models) {
                     return resolve(forum);
                 });
             });
+        },
+        addCommentToTopic(authorName, content, topic) {
+            let comment = {
+                author: authorName,
+                content
+            };
+            topic.comments.push(comment);
+
+            return new Promise((resolve, reject) => {
+                topic.save(err => {
+                    if (err) {
+                        return reject(err);
+                    }
+
+                    return resolve(topic);
+                });
+            });
         }
     };
 };
