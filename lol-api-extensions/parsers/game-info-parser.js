@@ -1,4 +1,4 @@
-const simpleMatchInfoFields = [
+const simpleGameInfoFields = [
     'gameMode',
     'bannedChampions',
     'participants',
@@ -19,15 +19,15 @@ const leagueTeams = {
 };
 
 function getSimpleGameInfo(gameInfo) {
-    let simpleMatchInfo = {};
+    let simpleGameInfo = {};
 
-    simpleMatchInfoFields.forEach(field => {
-        simpleMatchInfo[field] = gameInfo[field];
+    simpleGameInfoFields.forEach(field => {
+        simpleGameInfo[field] = gameInfo[field];
     });
 
     return Promise.resolve()
         .then(() => {
-            return simpleMatchInfo;
+            return simpleGameInfo;
         });
 }
 
