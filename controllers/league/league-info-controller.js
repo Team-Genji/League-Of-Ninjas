@@ -35,11 +35,10 @@ module.exports = function() {
 
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
-                    } else if (summonerInfo.status.message) {
+                    } else if (summonerInfo.status && summonerInfo.status.message) {
                         throw new Error('Summoner not found');
                     }
 
-                    console.log(summonerInfo);
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
@@ -59,11 +58,9 @@ module.exports = function() {
                     let iconLink = iconLinkProvider.getProfileIconLink(summonerInfo.name, region);
                     summonerInfo.iconLink = iconLink;
                     summonerInfo.region = region;
-                    console.log(summonerInfo);
                     return res.render('league-info/summonerinfo', { summoner: summonerInfo, user: req.user });
                 })
                 .catch(err => {
-                    console.log(err);
                     return res.render('errorpage', { error: { message: err.message }, user: req.user });
                 });
         },
@@ -78,22 +75,21 @@ module.exports = function() {
 
                     if (!summonerInfo) {
                         throw new Error('Service unavailable');
-                    } else if (summonerInfo.status.message) {
+                    } else if (summonerInfo.status && summonerInfo.status.message) {
                         throw new Error('Summoner not found');
                     }
                     return Promise.all([lolObjectParser.summonerInfoParser.getSummonerIds(summonerInfo, regularIdField), summonerInfo]);
                 })
                 .then(result => {
                     let summonerIds = result[0];
-                    console.log(result);
                     return lolApiRequester.game.getGameInfo(summonerIds[0], region);
                 })
                 .then(result => {
                     let gameInfo = result.body;
                     if (!gameInfo) {
                         throw new Error('Service unavailable');
-                    } else if (gameInfo.status.message) {
-                        throw new Error('Summoner is not an active game');
+                    } else if (gameInfo.status && gameInfo.status.message) {
+                        throw new Error('Summoner is not in an active game');
                     }
 
                     return lolObjectParser.gameInfoParser.getSimpleGameInfo(gameInfo);

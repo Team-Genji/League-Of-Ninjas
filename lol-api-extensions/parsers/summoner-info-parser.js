@@ -15,7 +15,7 @@ function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdFiel
             if (summonerLeagueInfo) {
                 summonerLeagueInfo.forEach((leagueInfo, index) => {
                     summonerLeagueInfo[index][queueField] = summonerLeagueInfo[index][queueField].replace(/_/g, ' ');
-                })
+                });
             }
 
             summonersFullInfo[leaguesField] = summonerLeagueInfo;
@@ -29,8 +29,6 @@ function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdFiel
             let summonerLeagueInfo = summonersLeagueInfo[summonerId];
 
             if (summonerLeagueInfo) {
-                let summonerLeagueInfo = summonersLeagueInfo[summonerId];
-
                 summonerLeagueInfo.forEach((leagueInfo, index) => {
                     summonerLeagueInfo[index][queueField] = summonerLeagueInfo[index][queueField].replace(/_/g, ' ');
                 });
