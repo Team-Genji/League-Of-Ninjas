@@ -1,4 +1,6 @@
-module.exports = function (data) {
+const userNotLoggedInMessage = 'User not logged in!';
+
+module.exports = function(data) {
     return {
         listTopicsInForum(req, res) {
             let {
@@ -22,6 +24,14 @@ module.exports = function (data) {
                 });
         },
         addTopicToForum(req, res) {
+            if (!req.user) {
+                return res.render('errorpage', {
+                    error: {
+                        message: userNotLoggedInMessage
+                    }
+                });
+            }
+
             let {
                 name
             } = req.body;
@@ -75,7 +85,7 @@ module.exports = function (data) {
             if (!req.user) {
                 return res.render('errorpage', {
                     error: {
-                        message: 'User not logged in!'
+                        message: userNotLoggedInMessage
                     }
                 });
             }

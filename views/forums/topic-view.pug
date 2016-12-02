@@ -8,8 +8,8 @@ block content
                     a= comment.author
                         | :&nbsp;
                     span= comment.content
-
-        form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")
-            textarea.form-control(type="text" name="content" placeholder="Enter a comment")
-            button.btn.btn-success
-                | Add Comment
+        if user
+            form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")
+                textarea.form-control(type="text" name="content" placeholder="Enter a comment")
+                button.btn.btn-success
+                    | Add Comment

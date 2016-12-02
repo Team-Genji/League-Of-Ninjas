@@ -1,3 +1,5 @@
+const userNotLoggedInMessage = 'User not logged in!';
+
 module.exports = function(data) {
     return {
         listForums(req, res) {
@@ -15,6 +17,14 @@ module.exports = function(data) {
                 });
         },
         createForum(req, res) {
+            if (!req.user) {
+                return res.render('errorpage', {
+                    error: {
+                        message: userNotLoggedInMessage
+                    }
+                });
+            }
+
             let {
                 name
             } = req.body;

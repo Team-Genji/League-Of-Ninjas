@@ -4,8 +4,8 @@ block content
     div.text-center: div
         each forum in forums
             div: a(href='/forums/' + forum.id): strong= forum.name
-
-        form.pagination(action="/forums" method="post")
-            input.form-control(type="text" name="name" placeholder="Enter a name of the forum")
-            button.btn.btn-success
-                | Create Forum
+        if user
+            form.pagination(action="/forums" method="post")
+                input.form-control(type="text" name="name" placeholder="Enter a name of the forum")
+                button.btn.btn-success
+                    | Create Forum
