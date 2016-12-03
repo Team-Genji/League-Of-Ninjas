@@ -8,11 +8,11 @@ module.exports = function(app, data) {
     const strategy = new LocalStrategy((username, password, done) => {
         data.findByUsername(username, password)
             .then(user => {
-                if (user) {
-                    return done(null, user);
+                if (user && user.authenticatePassword(password)) {
+                    done(null, user);
+                } else {
+                    done(null, false);
                 }
-
-                return done(null, false);
             })
             .catch(error => done(error, null));
     });
