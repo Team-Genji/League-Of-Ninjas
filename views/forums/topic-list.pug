@@ -1,10 +1,12 @@
 extends ../main/_layout
 
 block content
-    div.text-center: h1= forum.name
-        div
-            each topic in forum.topics
-                div: a(href='/forums/' + forum.id + '/topics/' + topic._id): strong= topic.name
+    div.im-centered.text-center
+        h1.well.well-sm Forum: #{forum.name}
+
+        div.list-group: each topic in forum.topics
+            a(href='/forums/' + forum.id + '/topics/' + topic._id).list-group-item.list-group-item-info
+                span= topic.name
         if user
             form.pagination(action='/forums/' + forum.id + '/topics' method="post")
                 input.form-control(type="text" name="name" placeholder="Enter a name of the topic")

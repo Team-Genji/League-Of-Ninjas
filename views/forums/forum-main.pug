@@ -1,9 +1,11 @@
 extends ../main/_layout
 
 block content
-    div.text-center: div
-        each forum in forums
-            div: a(href='/forums/' + forum.id): strong= forum.name
+    div.im-centered.text-center
+        h1.well.well-sm A list of our forums
+
+        div.list-group: each forum in forums
+            a(href='/forums/' + forum.id).list-group-item.list-group-item-success: span= forum.name
         if user
             form.pagination(action="/forums" method="post")
                 input.form-control(type="text" name="name" placeholder="Enter a name of the forum")

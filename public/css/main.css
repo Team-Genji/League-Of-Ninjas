@@ -1,27 +1,62 @@
 .labelSettings {
     margin: 0;
 }
-input.form-control{
+
+.im-centered {
+    margin: auto;
+    width: 500px
+}
+
+.comment-body {
+    display: block;
+
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    margin-bottom: 10px;
+}
+
+.comment-header {
+    display: block;
+
+    border: 3px solid black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.comment {
+    word-wrap: break-word;
+}
+
+input.form-control {
     background-color: #f9f9f9;
 }
-div.form-group{
-    margin-bottom:0px;
+
+div.form-group {
+    margin-bottom: 0px;
 }
-h3.username{
+
+h3.username {
     margin-right: 85px;
 }
-img.default-user-avatar{
+
+img.default-user-avatar {
     align-items: center;
     border-radius: 50%;
-    
     margin-left: 25px;
 }
-button#save-changes{
+
+button#save-changes {
     margin-left: 15px;
 }
-button#cancel-changes{
+
+button#cancel-changes {
     margin: 0;
 }
-h3.username{
+
+h3.username {
     text-align: center;
 }
