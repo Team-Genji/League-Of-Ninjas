@@ -1,9 +1,10 @@
-const simpleMatchInfoFields = [
-    'gameMode',
-    'bannedChampions',
-    'participants',
-    'platformId'
-];
+const platformsRegions = require('../../config/constants/lol-api-locale').PLATFORMS_REGIONS;
+
+const simpleGameInfoFields = {
+    gameMode: 'gameMode',
+    participants: 'participants',
+    platformId: 'platformId'
+};
 
 const teamIdField = 'teamId';
 
@@ -21,10 +22,11 @@ const leagueTeams = {
 function getSimpleGameInfo(gameInfo) {
     let simpleMatchInfo = {};
 
-    simpleMatchInfoFields.forEach(field => {
+    Object.keys(simpleGameInfoFields).forEach(key => {
+        let field = simpleGameInfoFields[key];
         simpleMatchInfo[field] = gameInfo[field];
     });
-
+    simpleMatchInfo[simpleGameInfoFields.platformId] = platformsRegions[simpleMatchInfo[simpleGameInfoFields.platformId]];
     return Promise.resolve()
         .then(() => {
             return simpleMatchInfo;
@@ -50,7 +52,21 @@ function devidePlayersByTeams(participants) {
         });
 }
 
+function parseGameInfo(gameinfo) {
+    return getSimpleGameInfo(gameinfo)
+        .then(simpleGameInfo => {
+            return Promise.all([devidePlayersByTeams(simpleGameInfo[simpleGameInfoFields.participants]), simpleGameInfo]);
+        })
+        .then(res => {
+            let teams = res[0];
+            let simpleGameInfo = res[1];
+            simpleGameInfo[simpleGameInfoFields.participants] = teams;
+            return simpleGameInfo;
+        });
+}
+
 module.exports = {
     getSimpleGameInfo,
-    devidePlayersByTeams
+    devidePlayersByTeams,
+    parseGameInfo
 };

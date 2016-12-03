@@ -1,3 +1,5 @@
+const userNotLoggedInMessage = 'User not logged in!';
+
 module.exports = function(data) {
     return {
         listForums(req, res) {
@@ -9,12 +11,23 @@ module.exports = function(data) {
                     });
                 })
                 .catch(err => {
-                    res
-                        .status(400)
-                        .send(err);
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
+                    });
                 });
         },
         createForum(req, res) {
+            if (!req.user) {
+                return res.render('errorpage', {
+                    error: {
+                        message: userNotLoggedInMessage
+                    }
+                });
+            }
+
             let {
                 name
             } = req.body;
@@ -24,9 +37,12 @@ module.exports = function(data) {
                     return res.redirect('/forums');
                 })
                 .catch(err => {
-                    res
-                        .status(400)
-                        .send(err);
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
+                    });
                 });
         },
         getForumById(req, res) {
@@ -36,6 +52,14 @@ module.exports = function(data) {
                 .then(forum => {
                     return res.render('./forums/topic-list', {
                         forum,
+                        user: req.user
+                    });
+                })
+                .catch(err => {
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
                         user: req.user
                     });
                 });

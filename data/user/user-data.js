@@ -1,7 +1,8 @@
 const userExistsErrorCode = 11000;
 const userExistsErrorMessage = 'User with this username aleready exists!';
-const mongo= require('mongodb');
-const connection = mongo.MongoClient.connect('mongodb://localhost/LeagueOfNinjas');
+// const mongo = require('mongodb');
+// const User = require('./../../models/user-model');
+// const connection = mongo.MongoClient.connect('mongodb://localhost/LeagueOfNinjas');
 
 module.exports = function (models) {
     let {
@@ -30,7 +31,11 @@ module.exports = function (models) {
             });
         },
         updateUserSettings(_id, settings) {
-            return connection.then(db => db.collection('users').findOneAndUpdate({ _id }, { $set: settings }));
+            return User.findById(_id, (err, user) => {
+                user.password = settings.password || user.hashPass;
+                user.avatarUrl = settings.avatarUrl || user.avatarUrl;
+                user.save();
+            });
         }
     };
 };

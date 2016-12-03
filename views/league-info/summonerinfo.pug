@@ -9,13 +9,16 @@ block content
         if summoner.leagues
           each league in summoner.leagues
             p Queue type: #{league.queue}
-            p League name: #{league.name}
-            p Division: #{league.tier} 
-              each entry in league.entries
-                span #{entry.division}
-                span  #{entry.leaguePoints} LP
-                P.text-success Ranked Wins: #{entry.wins}
-                p.text-danger Ranked Losses: #{entry.losses}
+            if league.entries
+              p League name: #{league.name}
+              p Division: #{league.tier}
+                each entry in league.entries
+                  span  #{entry.division}
+                  span  #{entry.leaguePoints} LP
+                  P.text-success Ranked Wins: #{entry.wins}
+                  p.text-danger Ranked Losses: #{entry.losses}
+            else
+              p League info not available at the moment
         else
           p League name: No League
           p Division: Unranked

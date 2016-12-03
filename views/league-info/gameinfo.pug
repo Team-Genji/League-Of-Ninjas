@@ -3,14 +3,35 @@ extends ../main/_layout
 block content
   div.text-center
     strong
+      h3 Game mode: #{gameInfo.gameMode}
       div.panel-info.panel-default
-        each summoner in gameInfo.blue
+        each summoner in gameInfo.participants.blue
             div.panel-heading(style='color: black')
-              p #{summoner.summonerName} #{summoner.summonerName}
+              if summoner.bot
+                p BOT
+              else
+                a(href='/summonerinfo?summonername=' + summoner.summonerName + '&region=' + gameInfo.platformId) #{summoner.summonerName}
+                if summoner.leagues
+                  span  #{summoner.leagues.tier}
+                  each entry in summoner.leagues.entries
+                    span  #{entry.division}
+                    span  #{entry.leaguePoints} LP
+                else 
+                  span  Unranked
 
       div.panel-danger.panel-default
-        each summoner in gameInfo.red
+        each summoner in gameInfo.participants.red
             div.panel-heading(style='color: black')
-              p #{summoner.summonerName} #{summoner.summonerName}
+              if summoner.bot
+                p BOT
+              else
+                a(href='/summonerinfo?summonername=' + summoner.summonerName + '&region=' + gameInfo.platformId) #{summoner.summonerName}
+                if summoner.leagues
+                  span  #{summoner.leagues.tier}
+                  each entry in summoner.leagues.entries
+                    span  #{entry.division}
+                    span  #{entry.leaguePoints} LP
+                else 
+                  span  Unranked
 
     

@@ -1,15 +1,16 @@
 extends ../main/_layout
 
 block content
-    div.text-center: h1= topic.name
-        div
-            each comment in topic.comments
-                div
-                    a= comment.author
-                        | :&nbsp;
-                    span= comment.content
+    div.im-centered.text-center
+        h1.well.well-sm Topic: #{topic.name}
 
-        form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")
-            textarea.form-control(type="text" name="content" placeholder="Enter a comment")
-            button.btn.btn-success
-                | Add Comment
+        each comment in topic.comments
+            div.comment-header.small
+                a(href="#") #{comment.author}
+                span &nbsp;said:
+            p.comment.comment-body #{comment.content}
+        if user
+            form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")
+                textarea.form-control(type="text" name="content" placeholder="Enter a comment")
+                button.btn.btn-success
+                    | Add Comment

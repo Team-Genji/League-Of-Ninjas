@@ -2,9 +2,9 @@ module.exports = function(models) {
     let { User } = models;
 
     return {
-        findByUsername(username, password) {
+        findByUsername(username) {
             return new Promise((resolve, reject) => {
-                User.findOne({ username, password }, (err, user) => {
+                User.findOne({ username }, (err, user) => {
                     if (err) {
                         return reject(err);
                     }

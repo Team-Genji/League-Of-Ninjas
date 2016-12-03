@@ -9,5 +9,5 @@ module.exports = function(app, data) {
         .post('/signup', authController.register)
         .get('/sign-out', authController.logout)
         .get('/profile', usersController.getProfile)
-        .get('/unauthorized', usersController.getUnauthorized);
+        .post('/profile/', authController.isAuthenticated, usersController.updateUser);
 };

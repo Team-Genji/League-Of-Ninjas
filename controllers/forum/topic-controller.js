@@ -1,3 +1,5 @@
+const userNotLoggedInMessage = 'User not logged in!';
+
 module.exports = function(data) {
     return {
         listTopicsInForum(req, res) {
@@ -13,12 +15,23 @@ module.exports = function(data) {
                     });
                 })
                 .catch(err => {
-                    res
-                        .status(400)
-                        .send(err);
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
+                    });
                 });
         },
         addTopicToForum(req, res) {
+            if (!req.user) {
+                return res.render('errorpage', {
+                    error: {
+                        message: userNotLoggedInMessage
+                    }
+                });
+            }
+
             let {
                 name
             } = req.body;
@@ -38,10 +51,13 @@ module.exports = function(data) {
                 .then(resultForum => {
                     return res.redirect(`/forums/${resultForum.id}/topics`);
                 })
-                .catch(error => {
-                    res
-                        .status(400)
-                        .send(error);
+                .catch(err => {
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
+                    });
                 });
         },
         getTopicById(req, res) {
@@ -56,10 +72,43 @@ module.exports = function(data) {
                         user: req.user
                     });
                 })
-                .catch(error => {
-                    res
-                        .status(400)
-                        .send(error);
+                .catch(err => {
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
+                    });
+                });
+        },
+        addCommentToTopic(req, res) {
+            if (!req.user) {
+                return res.render('errorpage', {
+                    error: {
+                        message: userNotLoggedInMessage
+                    }
+                });
+            }
+
+            let username = req.user.username;
+            let content = req.body.content;
+            let topicId = req.params.topicId;
+            let forumId = req.params.forumId;
+
+            data.getTopicById(topicId)
+                .then(topic => {
+                    return data.addCommentToTopic(username, content, topic);
+                })
+                .then(resultTopic => {
+                    return res.redirect(`/forums/${forumId}/topics/${resultTopic.id}`);
+                })
+                .catch(err => {
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
+                    });
                 });
         }
     };
