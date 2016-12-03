@@ -22,7 +22,18 @@ module.exports = function(data) {
             res.send('<h1>Unauthorized!</h1>');
         },
         updateUser(req, res) {
-            const settings = req.body;
+            let settings;
+            // think of better way to do this
+            if (req.body.avatarUrl.length && req.body.password) {
+                settings = { password: req.body.password,
+                    avatarUrl: req.body.avatarUrl };
+            }
+            if (!req.body.avatarUrl && req.body.password) {
+                settings = { password: req.body.password };
+            }
+            if (req.body.avatarUrl && !req.body.password) {
+                settings = { avatarUrl: req.body.avatarUrl };
+            }
             data.updateUserSettings(req.user._id, settings).then(result => res.status(200).json(settings));
         },
         getRegister(req, res) {

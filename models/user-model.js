@@ -8,10 +8,8 @@ module.exports = modelRegistrator.register('User', {
         minlength: [3, 'username is too short!'],
         maxlength: [50, 'username is too long!']
     },
-    password: {
-        type: String,
-        required: true
-    },
+    salt: String,
+    hashPass: String,
     avatarUrl: {
         type: String
     }

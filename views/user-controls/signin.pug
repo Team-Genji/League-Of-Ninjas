@@ -1,17 +1,20 @@
 extends ../main/_layout
 
+block styles
+    link(rel="stylesheet", href="/static/bower_components/toastr/toastr.css")
+
+block headScripts
+    script(type='text/javascript', src='./static/js/user-signin.js')
+    script(type='text/javascript', src='/static/bower_components/toastr/toastr.js')
 block content
     .row
         .col-xs-offset-1.col-xs-10.col-sm-offset-4.col-sm-4
-            form(action="/signin" method="post")
-                div.form-group
-                    label.labelSettings Username
-                    input.form-control(type="text" name="username")
-                div.form-group
-                    label.labelSettings Password
-                    input.form-control(type="text" name="password")
-                button.btn.btn-success.col-xs-6
-                        | Sign in
+            div.form-group
+                label.labelSettings Username
+                input.form-control(id="username" type="text" name="username")
+            div.form-group
+                label.labelSettings Password
+                input.form-control(id="password" type="text" name="password")
+            button.btn.btn-success.col-xs-6(id="btn-signin" type="submit") Sign in
             form(action="/" method="get")
-                    button.btn.btn-danger.col-xs-6
-                        | Cancel
+                    button.btn.btn-danger.col-xs-6 Cancel

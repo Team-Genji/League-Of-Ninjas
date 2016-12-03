@@ -10,19 +10,14 @@ module.exports = function(data) {
                 }
 
                 if (user === false) {
-                    res.json({
-                        success: false,
-                        message: 'Invalid name or password!'
-                    });
+                    return res.send({ success: false, message: 'Invalid username or password' });
                 }
-
                 req.login(user, err => {
                     if (err) {
                         next(err);
                         return;
                     }
-
-                    res.redirect('/profile');
+                    return res.send({ success: true, message: 'Successfully logged in' });
                 });
             });
 
@@ -39,13 +34,13 @@ module.exports = function(data) {
 
             data.createUser(username, password, avatarUrl)
                 .then(() => {
-                    return res.redirect('/signin');
+                    return res.send({ success: true, message: 'You successfully have been registered' });
                 })
                 .catch(error => res.status(500).json(error));
         },
         isAuthenticated(req, res, next) {
             if (!req.isAuthenticated()) {
-                return res.status(403).redirect('/unauthorized');
+                return res.send({ success: false, message: 'You are not allowed to do this' });
             }
 
             next();
