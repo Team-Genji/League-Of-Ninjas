@@ -2,7 +2,7 @@
 
 window.onload = function() {
     let messages = [];
-    let socket = io.connect('http://25.41.220.206:3001');
+    let socket = io();
     let field = document.getElementById('field');
     let sendButton = document.getElementById('send');
     let content = document.getElementById('content');
