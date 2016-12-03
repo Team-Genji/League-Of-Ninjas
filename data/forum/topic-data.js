@@ -1,3 +1,8 @@
+const commentTooLongMessage = 'Comment is too long!';
+const commentTooShortMessage = 'Comment is too short!';
+const minCommentLength = 5;
+const maxCommentLength = 1000;
+
 module.exports = function (models) {
     let {
         Topic
@@ -64,9 +69,20 @@ module.exports = function (models) {
                 author: authorName,
                 content
             };
-            topic.comments.push(comment);
 
             return new Promise((resolve, reject) => {
+                if (content.length < minCommentLength) {
+                    return reject({
+                        message: commentTooShortMessage
+                    });
+                } else if (content.length > maxCommentLength) {
+                    return reject({
+                        message: commentTooLongMessage
+                    });
+                }
+
+                topic.comments.push(comment);
+
                 topic.save(err => {
                     if (err) {
                         return reject(err);
