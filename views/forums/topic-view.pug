@@ -6,8 +6,7 @@ block content
 
         each comment in topic.comments
             div.comment-header.small
-                a(href="#") #{comment.author}
-                span &nbsp;said:
+                span #{comment.author} said:
             p.comment.comment-body #{comment.content}
         if user
             form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")

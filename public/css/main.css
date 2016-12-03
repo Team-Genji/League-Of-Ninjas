@@ -8,11 +8,15 @@
 }
 
 .comment-body {
+    font-size: 20px;
+    color: black;
+    min-height: 50px;
+    background-color: #c4e3f3;
     display: block;
 
-    border-left: 3px solid #aff94a;
-    border-right: 3px solid #aff94a;
-    border-bottom: 3px solid #aff94a;
+    border-left: 3px solid #006193;
+    border-right: 3px solid #006193;
+    border-bottom: 3px solid #006193;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 
@@ -20,9 +24,14 @@
 }
 
 .comment-header {
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    height: 30px;
+    background-color: #c4e3f3;
     display: block;
 
-    border: 3px solid #aff94a;
+    border: 3px solid #006193;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }

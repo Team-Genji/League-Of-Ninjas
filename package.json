@@ -9,7 +9,7 @@
         "test": "./node_modules/.bin/eslint .",
         "start": "node app.js"
     },
-    "author": "Tea Genji",
+    "author": "Team Genji",
     "license": "GPLv3",
   "dependencies": {
     "body-parser": "^1.15.2",

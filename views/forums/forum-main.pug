@@ -1,5 +1,12 @@
 extends ../main/_layout
 
+block styles
+    link(rel='stylesheet', href='/static/bower_components/toastr/toastr.css')
+
+block headScripts
+    script(type='text/javascript', src='./static/js/forum/forum-main.js')
+    script(type='text/javascript', src='/static/bower_components/toastr/toastr.js')
+
 block content
     div.im-centered.text-center
         h1.well.well-sm A list of our forums
@@ -7,7 +14,6 @@ block content
         div.list-group: each forum in forums
             a(href='/forums/' + forum.id).list-group-item.list-group-item-success: span= forum.name
         if user
-            form.pagination(action="/forums" method="post")
-                input.form-control(type="text" name="name" placeholder="Enter a name of the forum")
-                button.btn.btn-success
-                    | Create Forum
+            input.form-control#input-forum-name(type="text" placeholder="Enter a name of the forum")
+            button.btn.btn-success#btn-forum-create
+                | Create Forum

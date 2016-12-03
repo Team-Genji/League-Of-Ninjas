@@ -1,12 +1,15 @@
 {
-  "name": "superhero-uni",
-  "description": "You are given a few simple tasks in order to exercise the skills learned through the lectures from the **Web applications with Node.js** course. The main goal is to improve your knowledge on using [Express](http://expressjs.com), [Pug](http://pugjs.com) and [MongoDB](http://mongodb.org), all that in a Node.js environment.",
+  "name": "league-of-ninjas",
+  "description": "A project by Team Genji.",
   "main": "index.js",
   "authors": [
-    "TonyNikolov <fatalclaw@hotmail.com>"
+    "TonyNikolov",
+    "Def4l71diot",
+    "Kalito98",
+    "ultron1251"
   ],
-  "license": "ISC",
-  "homepage": "https://github.com/TelerikAcademy/Web-Applications-with-Node.js",
+  "license": "GPLv3",
+  "homepage": "https://github.com/Team-Genji/League-Of-Ninjas",
   "ignore": [
     "**/.*",
     "node_modules",
