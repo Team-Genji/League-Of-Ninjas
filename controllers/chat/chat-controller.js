@@ -1,7 +1,10 @@
-module.exports = function () {
+module.exports = function() {
     return {
         getChat(req, res) {
-            return res.render('chat/chat.pug', { user: req.user });
+            if (!req.user) {
+                return res.render('errorpage', { error: { message: 'You need to be logged in in order to chat' } });
+            }
+            return res.render('chat/chat', { user: req.user });
         }
     };
 };
