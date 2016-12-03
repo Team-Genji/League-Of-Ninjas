@@ -11,6 +11,13 @@ block content
                 p BOT
               else
                 a(href='/summonerinfo?summonername=' + summoner.summonerName + '&region=' + gameInfo.platformId) #{summoner.summonerName}
+                if summoner.leagues
+                  span  #{summoner.leagues.tier}
+                  each entry in summoner.leagues.entries
+                    span  #{entry.division}
+                    span  #{entry.leaguePoints} LP
+                else 
+                  span  Unranked
 
       div.panel-danger.panel-default
         each summoner in gameInfo.participants.red
@@ -19,5 +26,12 @@ block content
                 p BOT
               else
                 a(href='/summonerinfo?summonername=' + summoner.summonerName + '&region=' + gameInfo.platformId) #{summoner.summonerName}
+                if summoner.leagues
+                  span  #{summoner.leagues.tier}
+                  each entry in summoner.leagues.entries
+                    span  #{entry.division}
+                    span  #{entry.leaguePoints} LP
+                else 
+                  span  Unranked
 
     

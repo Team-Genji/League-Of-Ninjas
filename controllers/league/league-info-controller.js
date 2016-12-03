@@ -5,7 +5,7 @@ const authKeys = require('../../config/constants/lol-api-auth').AUTH_KEYS,
     lolObjectParser = require('../../lol-api-extensions/parsers/index'),
     iconLinkProvider = require('../../lol-api-extensions/utils/profile-icon-link-provider');
 const regularIdField = 'id';
-// const summonerIdField = 'summonerId';
+const summonerIdField = 'summonerId';
 
 const queryParams = {
     summonerName: 'summonername',
@@ -91,6 +91,26 @@ module.exports = function() {
                     } else if (gameInfo.status && gameInfo.status.message) {
                         throw new Error('Summoner is not in an active game');
                     }
+                    return Promise.all(
+                        [lolObjectParser.summonerInfoParser.getSummonerIds(gameInfo.participants, summonerIdField), gameInfo]);
+                })
+                .then(result => {
+                    let summonerIds = result[0];
+                    let gameInfo = result[1];
+                    return Promise.all([lolApiRequester.summoner.getSummonersLeague(summonerIds, region), gameInfo]);
+                })
+                .then(result => {
+                    let summonersLeagues = result[0].body;
+                    let gameInfo = result[1];
+                    return Promise.all([
+                        lolObjectParser.summonerInfoParser.getFullSummonersInfo(gameInfo.participants, summonersLeagues, summonerIdField),
+                        gameInfo
+                    ]);
+                })
+                .then(result => {
+                    let participants = result[0];
+                    let gameInfo = result[1];
+                    gameInfo.participants = participants;
 
                     return lolObjectParser.gameInfoParser.parseGameInfo(gameInfo);
                 })
