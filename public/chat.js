@@ -1,37 +1,43 @@
-/* globals io document window */
+/* globals Event io document window */
 
 window.onload = function() {
-    let messages = [];
     let socket = io();
     let field = document.getElementById('field');
     let sendButton = document.getElementById('send');
     let content = document.getElementById('content');
-    let username = document.getElementById('usernameChat');
+    let username = document.getElementById('usernameChat').innerHTML;
+    let clickEvent = new Event('click');
 
     socket.on('message', data => {
         if (data.message) {
-            messages.push(data.message);
-            let html = '';
-            for (let index = 0; index < messages.length; index += 1) {
-                html += `${messages[index]} <br />`;
+
+            let message = document.createElement('p');
+            message.innerHTML = `${data.message}`;
+            if (data.message.toLowerCase().indexOf(`@${username.toLowerCase()}`) >= 0) {
+                message.classList.add('bg-danger');
             }
-            content.innerHTML = html;
+
+            content.appendChild(message);
         } else {
             console.log('Err: ', data);
         }
     });
 
-    sendButton.onclick = function() {
-        let text = `${username.innerHTML}:  ${field.value}`;
-        field.value = '';
-        socket.emit('send', { message: text });
-    };
-
-    field.keyup(event => {
-        if (event.keyCode === 13) {
-            let text = `${username.innerHTML}:  ${field.value}`;
+    sendButton.addEventListener('click', () => {
+        let message = field.value.trim();
+        if (message === '') {
+            // Show toastr error: Message should not be empty
+            field.value = '';
+        } else {
+            let text = `${username}:  ${field.value}`;
             field.value = '';
             socket.emit('send', { message: text });
+        }
+    });
+
+    field.addEventListener('keyup', event => {
+        if (event.keyCode === 13) {
+            sendButton.dispatchEvent(clickEvent);
         }
     });
 };
