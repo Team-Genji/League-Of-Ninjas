@@ -7,9 +7,9 @@ block content
         body
          div
           p#usernameChat(style='display: none; visability: hidden;') #{user.username}
-          #content(style='width: 500px; height: 300px; margin: 0 0 20px 0; border: solid 1px #999; overflow-y: scroll;')
-          .controls
-            input#field(style='width:350px;')
-            input#send(type='button', value='send')
+          div.panel.panel-default.panel-body#content(style='width: 70%; height: 300px; margin: 0 auto; overflow-y: scroll;')
+          div.text-center.controls
+            input.form-control#field(style='width: 50%; display: inline-block')
+            input.btn-success#send(type='button', value='send' style='display: inline-block')
 
 
