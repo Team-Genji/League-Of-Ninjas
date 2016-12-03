@@ -24,8 +24,16 @@ module.exports = function(data) {
             auth(req, res, next);
         },
         logout(req, res) {
-            req.logout();
-            res.redirect('/home');
+            return Promise.resolve()
+                .then(() => {
+                    req.logout(() => {
+                        return res.send({ success: true, message: 'Successfully logged out' });
+                    });
+                })
+                .then(() => {
+                    res.redirect('/home');
+                });
+
         },
         register(req, res) {
             let username = req.body.username;
@@ -36,7 +44,9 @@ module.exports = function(data) {
                 .then(() => {
                     return res.send({ success: true, message: 'You successfully have been registered' });
                 })
-                .catch(error => res.status(500).json(error));
+                .catch(error => {
+                    return res.send({ success: false, message: `${error}` });
+                });
         },
         isAuthenticated(req, res, next) {
             if (!req.isAuthenticated()) {

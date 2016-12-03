@@ -22,19 +22,21 @@ module.exports = function(data) {
             res.send('<h1>Unauthorized!</h1>');
         },
         updateUser(req, res) {
-            let settings;
-            // think of better way to do this
-            if (req.body.avatarUrl.length && req.body.password) {
-                settings = { password: req.body.password,
-                    avatarUrl: req.body.avatarUrl };
+            let settings = {};
+
+            if (req.body.password) {
+                settings.password = req.body.password;
             }
-            if (!req.body.avatarUrl && req.body.password) {
-                settings = { password: req.body.password };
+            if (req.body.avatarUrl) {
+                settings.avatarUrl = req.body.avatarUrl;
             }
-            if (req.body.avatarUrl && !req.body.password) {
-                settings = { avatarUrl: req.body.avatarUrl };
-            }
-            data.updateUserSettings(req.user._id, settings).then(() => res.status(200).json(settings));
+            data.updateUserSettings(req.user._id, settings)
+             .then(() => {
+                 return res.send({ success: true, message: 'You successfully updated profile' });
+             })
+             .catch(error => {
+                 return res.send({ success: false, message: `${error}` });
+             });
         },
         getRegister(req, res) {
             return res.render('./user-controls/signup');

@@ -1,23 +1,30 @@
 extends ../main/_layout
 
+block styles
+    link(rel="stylesheet", href="/static/bower_components/toastr/toastr.css")
+
+block headScripts
+    script(type='text/javascript', src='./static/js/user-profile.js')
+    script(type='text/javascript', src='./static/js/validator.js')
+    script(type='text/javascript', src='/static/bower_components/toastr/toastr.js')
+
 block content
     .row
         div.user-container.col-xs-offset-1.col-xs-10.col-sm-offset-4.col-sm-4
-            h3.username(id=user._id) #{user.username}
+            h3.username(id=user._id) Hello, #{user.username}
             div.img-container
-                img.default-user-avatar(id="default-user-avatar", src=user.avatarUrl || "http://www.humasol.be/wp-content/uploads/2016/05/Nelson_Neves_picuture.gif", height=140,width=140)
-            form(action="/profile" method="post")
-                div.form-group.col-sm-8
-                    label.labelSettings Change avatar
-                    input.form-control(id="user-avatar" type="text" name="avatarUrl" placeholder="Avatar url")
-                div.form-group.col-sm-8
-                   label.labelSettings New password
-                   input.form-control(id="user-new-password" type="text" name="password")
-                div.form-group.col-sm-8
-                    label.labelSettings Repeat new password
-                    input.form-control(id="user-repeat-new-password" type="text" name="repeat-password")
-                    button.btn.btn-success.col-xs-6-previous(id="save-changes" type="submit")
-                        | Save Changes
+                img.default-user-avatar(id="default-user-avatar", src=user.avatarUrl, height=140,width=140)
+            div.form-group.col-sm-8
+                label.labelSettings Change avatar
+                input.form-control(id="user-avatar" type="text" name="avatarUrl" placeholder="Avatar url")
+            div.form-group.col-sm-8
+               label.labelSettings New password
+               input.form-control(id="user-new-password" type="text" name="password")
+            div.form-group.col-sm-8
+                label.labelSettings Repeat new password
+                input.form-control(id="user-repeat-new-password" type="text" name="repeat-password")
+                button.btn.btn-success.col-xs-6-previous(id="save-changes" type="submit")
+                    | Save Changes
                     form(action="/profile" method="get")
                     button.btn.btn-danger.col-xs-6-next(id="cancel-changes",href="/profile/")
-                            | Cancel
+                        | Cancel
