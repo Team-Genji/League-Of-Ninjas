@@ -4,7 +4,9 @@ module.exports = modelRegistrator.register('User', {
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        minlength: [3, 'username is too short!'],
+        maxlength: [50, 'username is too long!']
     },
     password: {
         type: String,
