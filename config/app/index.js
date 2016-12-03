@@ -12,7 +12,7 @@ module.exports = function(data) {
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(bodyParser.json());
     app.use(session({ secret: 'purple unicorn' }));
-
+    app.use(express.static('../../chat-logic'));
     require('../passport')(app, data);
 
     return app;
