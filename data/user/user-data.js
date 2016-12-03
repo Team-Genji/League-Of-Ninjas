@@ -1,8 +1,8 @@
 const userExistsErrorCode = 11000;
 const userExistsErrorMessage = 'User with this username aleready exists!';
-const mongo = require('mongodb');
-const User = require('./../../models/user-model');
-const connection = mongo.MongoClient.connect('mongodb://localhost/LeagueOfNinjas');
+// const mongo = require('mongodb');
+// const User = require('./../../models/user-model');
+// const connection = mongo.MongoClient.connect('mongodb://localhost/LeagueOfNinjas');
 
 module.exports = function (models) {
     let {

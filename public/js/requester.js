@@ -1,13 +1,15 @@
+/* globals $ */
+
 let requester = (function () {
     function get(url) {
         let promise = new Promise((resolve, reject) => {
             $.ajax({
                 url,
                 method: 'GET',
-                success (response) {
+                success(response) {
                     resolve(response);
                 },
-                error (err) {
+                error(err) {
                     reject(err);
                 }
             });
@@ -24,10 +26,10 @@ let requester = (function () {
                 method: 'PUT',
                 contentType: 'application/json',
                 data: JSON.stringify(body),
-                success (response) {
+                success(response) {
                     resolve(response);
                 },
-                error (err) {
+                error(err) {
                     reject(err);
                 }
             });
@@ -45,10 +47,10 @@ let requester = (function () {
                 method: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify(body),
-                success (response) {
+                success(response) {
                     resolve(response);
                 },
-                error (err) {
+                error(err) {
                     reject(err);
                 }
             });
@@ -65,12 +67,11 @@ let requester = (function () {
                 headers,
                 method: 'GET',
                 contentType: 'application/json',
-                success (response) {
+                success(response) {
                     resolve(response);
                 },
-                error (err) {
-                    if (err.status === 401) {
-                    }
+                error(err) {
+                    if (err.status === 401) {}
 
                     reject(err);
                 }

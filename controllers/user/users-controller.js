@@ -1,4 +1,4 @@
-const usersServices = require('../../data/user/user-data');
+// const usersServices = require('../../data/user/user-data');
 
 module.exports = function(data) {
     return {
@@ -34,7 +34,7 @@ module.exports = function(data) {
             if (req.body.avatarUrl && !req.body.password) {
                 settings = { avatarUrl: req.body.avatarUrl };
             }
-            data.updateUserSettings(req.user._id, settings).then(result => res.status(200).json(settings));
+            data.updateUserSettings(req.user._id, settings).then(() => res.status(200).json(settings));
         },
         getRegister(req, res) {
             return res.render('./user-controls/signup');

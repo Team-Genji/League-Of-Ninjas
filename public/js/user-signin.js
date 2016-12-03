@@ -7,7 +7,7 @@ $('body').on('click', '#btn-signin', () => {
     };
     let url = '/signin';
     requester.postJSON(url, user)
-        .then((response) => {
+        .then(response => {
             if (response.success) {
                 toastr.success(response.message);
                 $(location).attr('href', '/profile');

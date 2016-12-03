@@ -1,6 +1,7 @@
-const mongoose = require('mongoose'),
-    MongooseSchema = mongoose.Schema,
-    crypto = require('crypto');
+const mongoose = require('mongoose');
+const MongooseSchema = mongoose.Schema;
+const crypto = require('crypto');
+
 // if time left, extract model
 module.exports.register = function(name, schemaProperties) {
     if (name === 'User') {
