@@ -1,0 +1,15 @@
+extends ../main/_layout
+
+block content
+        head
+          script(src='static/chat.js')
+          script(src='socket.io/socket.io.js')
+        body
+         div
+          p#usernameChat(style='display: none; visability: hidden;') #{user.username}
+          div.panel.panel-default.panel-body#content(style='width: 70%; height: 300px; margin: 0 auto; overflow-y: scroll;')
+          div.text-center.controls
+            input.form-control#field(style='width: 50%; display: inline-block')
+            input.btn-success#send(type='button', value='send' style='display: inline-block')
+
+
