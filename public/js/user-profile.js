@@ -1,14 +1,16 @@
-/* globals toastr $ requester location validator */
+/* globals toastr $ requester validator */
 $('body').on('click', '#save-changes', () => {
 
     const $userContainer = $('.user-container');
     var isUserDataValid = true,
-        result = { success: true };
+        result = {
+            success: true
+        };
 
-    $userContainer.find('input').each(function() {
+    $userContainer.find('input').each(function () {
         let input = $(this),
             inputType = input.attr('name');
-        if(input.val()<1){
+        if (input.val() < 1) {
             return;
         }
         if (inputType === 'avatarUrl') {
@@ -39,15 +41,13 @@ $('body').on('click', '#save-changes', () => {
     }
 
     var updateUser;
-    // think of better way to do this
     if ($('#user-avatar').val().length < 1 && $('#user-repeat-new-password').val().length > 0 && $('#user-new-password').val().length > 0) {
         if ($('#user-new-password').val() === $('#user-repeat-new-password').val()) {
             updateUser = {
                 _id: $('.username').attr('id'),
                 password: $('#user-new-password').val()
             };
-        }
-        else {
+        } else {
             return toastr.error('new password and repeat new password are not the same!');
         }
     } else if ($('#user-avatar').val().length > 0 && $('#user-repeat-new-password').val().length > 0 && $('#user-new-password').val().length > 0) {
@@ -64,15 +64,14 @@ $('body').on('click', '#save-changes', () => {
             avatarUrl: $('#user-avatar').val()
         };
     }
-    
+
 
     requester.postJSON('/profile', updateUser)
-         .then(response => {
-             if (response.success) {
-                 toastr.success(response.message);
-             } else {
-                 toastr.error(response.message);
-             }
-             //l ocation.reload();
-         });
+        .then(response => {
+            if (response.success) {
+                toastr.success(response.message);
+            } else {
+                toastr.error(response.message);
+            }
+        });
 });

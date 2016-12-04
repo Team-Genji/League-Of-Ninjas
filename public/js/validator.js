@@ -1,5 +1,4 @@
 let validator = (function() {
-
     function validateString(str, min, max, chars) {
         if (typeof str !== 'string' || str.length < min || str.length > max) {
             return {
@@ -24,7 +23,6 @@ let validator = (function() {
     }
 
     function validateUrl(url) {
-
         if (!url || url.length === 0) {
             return;
         }
@@ -40,7 +38,7 @@ let validator = (function() {
         }
         return {
             success: true
-        }
+        };
     }
 
     return {

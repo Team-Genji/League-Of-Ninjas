@@ -6,8 +6,3 @@ const server = app.listen(config.port);
 require('./config/chat/index')(server);
 
 console.log('running');
-
-
-
-
-
