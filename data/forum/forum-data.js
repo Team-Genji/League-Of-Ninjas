@@ -22,7 +22,7 @@ module.exports = function (models) {
         getForums() {
             return new Promise((resolve, reject) => {
                 Forum.find((err, forums) => {
-                    if (err) {
+                    if (err || !forums) {
                         return reject(err);
                     }
 
@@ -35,7 +35,7 @@ module.exports = function (models) {
                 Forum.findOne({
                     _id: id
                 }, (error, forum) => {
-                    if (error) {
+                    if (error || !forum) {
                         return reject(error);
                     }
 
