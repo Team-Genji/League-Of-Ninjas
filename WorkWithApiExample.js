@@ -6,6 +6,7 @@ const authKeys = require('./config/constants/lol-api-auth').AUTH_KEYS,
 let authKeyProvider = keyProviderFactory.getKeyProvider(authKeys);
 
 let lolApiRequester = lolApiRequesterFactory.getLoLApiRequester(requester, authKeyProvider);
+let lolData = require('./data/league/league-data')(lolApiRequester);
 
 lolApiRequester.summoner.getSummonersInfo(['Sleepwalkin'], 'eune')
     .then(res => {
@@ -58,4 +59,33 @@ lolApiRequester.summoner.getSummonersInfo(['Funnnyyy', 'HystericShadow'], 'eune'
         console.log('-------');
         console.log(res.body);
         console.log('------------------');
+    });
+
+// League DATA usage
+lolData.getSummonersInfo(['Error', 'Status', 'NAME_THAT_SHOULD_NOT_RETURN_AN_USER'], 'eune')
+    .then(res => {
+        console.log('--------------------------------------------------------------------');
+        console.log('LEAGUE-DATA USAGE');
+        console.log('-------');
+        console.log('LEAGUE-DATA SummonerInfo');
+        console.log('------------------');
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err.message);
+    });
+
+lolData.getGameInfoByUsername('111201189141', 'euw')
+    .then(res => {
+        console.log('--------------------------------------------------------------------');
+        console.log('LEAGUE-DATA USAGE');
+        console.log('-------');
+        console.log('LEAGUE-DATA GameInfoByUsername');
+        console.log('------------------');
+        console.log(res);
+        console.log(res.participants.blue);
+        console.log(res.participants.red);
+    })
+    .catch(err => {
+        console.log(err.message);
     });
