@@ -2,6 +2,7 @@
 
 module.exports = function (data) {
     return {
+        name: 'userController',
         getHome(req, res) {
             res.status(200).send(`
                 <h1>${req.user ? req.user.username : 'Log in'}</h1>
