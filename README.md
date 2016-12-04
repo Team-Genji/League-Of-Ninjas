@@ -39,4 +39,5 @@ We have used our whole javascript skillset to deliver a well-engineered project 
 **The project is licensed under the GPLv3 License**
 
 [The project is being hosted here.](https://leagueofninjas.herokuapp.com/)
+
 [YouTube presentation video](https://www.youtube.com/watch?v=A6pnXQya8jM)
