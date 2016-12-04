@@ -1,5 +1,12 @@
 extends ../main/_layout
 
+block styles
+    link(rel='stylesheet', href='/static/bower_components/toastr/toastr.css')
+
+block headScripts
+    script(type='text/javascript', src='/static/js/forum/topic-view.js')
+    script(type='text/javascript', src='/static/bower_components/toastr/toastr.js')
+
 block content
     div.im-centered.text-center
         h1.well.well-sm Topic: #{topic.name}
@@ -9,7 +16,6 @@ block content
                 span #{comment.author} said:
             p.comment.comment-body #{comment.content}
         if user
-            form.pagination(action='/forums/' + forumId + '/topics/' + topic.id method="post")
-                textarea.form-control(type="text" name="content" placeholder="Enter a comment")
-                button.btn.btn-success
-                    | Add Comment
+            textarea.form-control#input-comment-content(type="text" name="content" placeholder="Enter a comment")
+            button.btn.btn-success#btn-comment-create
+                | Add Comment

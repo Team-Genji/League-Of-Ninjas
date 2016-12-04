@@ -1,5 +1,12 @@
 extends ../main/_layout
 
+block styles
+    link(rel='stylesheet', href='/static/bower_components/toastr/toastr.css')
+
+block headScripts
+    script(type='text/javascript', src='/static/js/forum/topic-list.js')
+    script(type='text/javascript', src='/static/bower_components/toastr/toastr.js')
+
 block content
     div.im-centered.text-center
         h1.well.well-sm Forum: #{forum.name}
@@ -8,7 +15,6 @@ block content
             a(href='/forums/' + forum.id + '/topics/' + topic._id).list-group-item.list-group-item-info
                 span= topic.name
         if user
-            form.pagination(action='/forums/' + forum.id + '/topics' method="post")
-                input.form-control(type="text" name="name" placeholder="Enter a name of the topic")
-                button.btn.btn-success
-                    | Create Topic
+            input.form-control#input-topic-name(type="text" name="name" placeholder="Enter a name of the topic")
+            button.btn.btn-success#btn-topic-create
+                | Create Topic
