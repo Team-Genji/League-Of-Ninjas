@@ -1,6 +1,6 @@
-module.exports = function(app, data) {
-    let authController = require('../controllers/user/auth-controller')(data);
-    let usersController = require('../controllers/user/users-controller')(data);
+module.exports = function(app, data, controllers) {
+    let authController = controllers.authentication;
+    let usersController = controllers.userController;
 
     app
         .get('/signin', usersController.getLogin)

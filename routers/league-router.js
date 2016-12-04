@@ -1,5 +1,5 @@
-module.exports = function(app, data) {
-    let leagueinfocontroller = require('../controllers/league/league-info-controller')(data);
+module.exports = function(app, data, controllers) {
+    let leagueinfocontroller = require('../controllers/league-info-controller')(data);
 
     app
         .get('/summonersearch', leagueinfocontroller.getSummonerSearch)

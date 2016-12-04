@@ -2,6 +2,7 @@ const passport = require('passport');
 
 module.exports = function (data) {
     return {
+        name: 'authentication',
         loginLocal(req, res, next) {
             const auth = passport.authenticate('local', (error, user) => {
                 if (error) {

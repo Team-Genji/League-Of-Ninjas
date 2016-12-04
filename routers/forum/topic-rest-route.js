@@ -1,5 +1,5 @@
 module.exports = function(app, data) {
-    let controller = require('../../controllers/forum/topic-rest-controller')(data);
+    let controller = require('../../controllers/topic-rest-controller')(data);
 
     app
         .get('/api/forums/:forumId/topics', controller.listTopicsInForumRest)

@@ -9,7 +9,7 @@ const lolApiAuthKeys = require('../config/constants/lol-api-auth').AUTH_KEYS;
 const lolApiAuthKeyProvider = require('../utils/key-provider').getKeyProvider(lolApiAuthKeys);
 const lolApiRequester = require('../lol-api-requester').getLoLApiRequester(requester, lolApiAuthKeyProvider);
 
-module.exports = function(connectionString) {
+module.exports = function(connectionString, validator) {
     mongoose.Promise = global.Promise;
     mongoose.connect(connectionString);
 
@@ -25,7 +25,7 @@ module.exports = function(connectionString) {
         if (module.includes('league')) {
             dataModule = require(module)(lolApiRequester);
         } else if (module.includes('-data')) {
-            dataModule = require(module)(models);
+            dataModule = require(module)(models, validator);
         }
         Object.keys(dataModule)
             .forEach(key => {
