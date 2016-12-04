@@ -1,6 +1,6 @@
 // const usersServices = require('../../data/user/user-data');
 
-module.exports = function(data) {
+module.exports = function (data) {
     return {
         getHome(req, res) {
             res.status(200).send(`
@@ -15,7 +15,9 @@ module.exports = function(data) {
                 res.status(401).redirect('/unauthorized');
             } else {
                 const user = req.user;
-                return res.render('./user-controls/profile', { user });
+                return res.render('./user-controls/profile', {
+                    user
+                });
             }
         },
         getUnauthorized(req, res) {
@@ -23,20 +25,44 @@ module.exports = function(data) {
         },
         updateUser(req, res) {
             let settings = {};
+            let password = req.body.password;
+            let avatarUrl = req.body.avatarUrl;
+            let minPasswordLenght = 6;
+            let maxPasswordLenght = 24;
 
-            if (req.body.password) {
-                settings.password = req.body.password;
+
+            if (password) {
+                settings.password = password;
             }
-            if (req.body.avatarUrl) {
-                settings.avatarUrl = req.body.avatarUrl;
+            if (avatarUrl) {
+                settings.avatarUrl = avatarUrl;
+            }
+            if (password.length < minPasswordLenght) {
+                return res.send({
+                    success: false,
+                    message: `Password must be at least ${minPasswordLenght} characters`
+                });
+            }
+
+            if (password.length > maxPasswordLenght) {
+                return res.send({
+                    success: false,
+                    message: `Password must be at least ${maxPasswordLenght} characters`
+                });
             }
             data.updateUserSettings(req.user._id, settings)
-             .then(() => {
-                 return res.send({ success: true, message: 'You successfully updated profile' });
-             })
-             .catch(error => {
-                 return res.send({ success: false, message: `${error}` });
-             });
+                .then(() => {
+                    return res.send({
+                        success: true,
+                        message: 'You successfully updated profile'
+                    });
+                })
+                .catch(error => {
+                    return res.send({
+                        success: false,
+                        message: `${error}`
+                    });
+                });
         },
         getRegister(req, res) {
             return res.render('./user-controls/signup');

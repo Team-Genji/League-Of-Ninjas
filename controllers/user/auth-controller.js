@@ -1,6 +1,6 @@
 const passport = require('passport');
 
-module.exports = function(data) {
+module.exports = function (data) {
     return {
         loginLocal(req, res, next) {
             const auth = passport.authenticate('local', (error, user) => {
@@ -10,14 +10,20 @@ module.exports = function(data) {
                 }
 
                 if (user === false) {
-                    return res.send({ success: false, message: 'Invalid username or password' });
+                    return res.send({
+                        success: false,
+                        message: 'Invalid username or password'
+                    });
                 }
                 req.login(user, err => {
                     if (err) {
                         next(err);
                         return;
                     }
-                    return res.send({ success: true, message: 'Successfully logged in' });
+                    return res.send({
+                        success: true,
+                        message: 'Successfully logged in'
+                    });
                 });
             });
 
@@ -27,7 +33,10 @@ module.exports = function(data) {
             return Promise.resolve()
                 .then(() => {
                     req.logout(() => {
-                        return res.send({ success: true, message: 'Successfully logged out' });
+                        return res.send({
+                            success: true,
+                            message: 'Successfully logged out'
+                        });
                     });
                 })
                 .then(() => {
@@ -39,18 +48,44 @@ module.exports = function(data) {
             let username = req.body.username;
             let password = req.body.password;
             let avatarUrl = req.body.avatarUrl;
+            let minPasswordLenght = 6;
+            let maxPasswordLenght = 24;
+
+            if (password.length < minPasswordLenght) {
+                return res.send({
+                    success: false,
+                    message: `Password must be at least ${minPasswordLenght} characters`
+                });
+            }
+
+            if (password.length > maxPasswordLenght) {
+                return res.send({
+                    success: false,
+                    message: `Password must be at least ${maxPasswordLenght} characters`
+                });
+            }
+
 
             data.createUser(username, password, avatarUrl)
                 .then(() => {
-                    return res.send({ success: true, message: 'You successfully have been registered' });
+                    return res.send({
+                        success: true,
+                        message: 'You successfully have been registered'
+                    });
                 })
                 .catch(error => {
-                    return res.send({ success: false, message: `${error}` });
+                    return res.send({
+                        success: false,
+                        message: `${error}`
+                    });
                 });
         },
         isAuthenticated(req, res, next) {
             if (!req.isAuthenticated()) {
-                return res.send({ success: false, message: 'You are not allowed to do this' });
+                return res.send({
+                    success: false,
+                    message: 'You are not allowed to do this'
+                });
             }
 
             next();
