@@ -1,6 +1,7 @@
 const userNotLoggedInMessage = 'User not logged in!';
+const onlyAdminsCanPostMessage = 'Only admins can create forums!';
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         listForums(req, res) {
             return data.getForums()
@@ -25,6 +26,11 @@ module.exports = function (data) {
                     userNotLoggedInMessage
                 });
 
+                res.status(406).json(jsonResponse);
+            }
+
+            if (req.user.role !== 'admin') {
+                let jsonResponse = JSON.stringify({ onlyAdminsCanPostMessage });
                 res.status(406).json(jsonResponse);
             }
 
