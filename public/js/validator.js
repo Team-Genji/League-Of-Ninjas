@@ -28,7 +28,7 @@ let validator = (function() {
         if (!url || url.length === 0) {
             return;
         }
-    // copied from http://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-an-url#answer-5717133
+
         let expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
         let regex = new RegExp(expression);
         if (!regex.test(url)) {

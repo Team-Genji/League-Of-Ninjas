@@ -7,8 +7,8 @@ module.exports = modelRegistrator.register('Topic', {
         type: String,
         required: true,
         unique: false,
-        minlength: [minTopicNameLength, 'Topic name is too short!'],
-        maxlength: [maxTopicNameLength, 'Topic name is too long']
+        maxlength: [maxTopicNameLength, 'Topic name is too long'],
+        minlength: [minTopicNameLength, 'Topic name is too short!']
     },
     // _id
     comments: [{}]

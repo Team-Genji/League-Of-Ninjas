@@ -15,20 +15,15 @@ module.exports = function(data) {
                     });
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.message
                     });
                 });
         },
         addTopicToForum(req, res) {
             if (!req.user) {
-                return res.render('errorpage', {
-                    error: {
-                        message: userNotLoggedInMessage
-                    }
+                return res.status(401).send({
+                    message: userNotLoggedInMessage
                 });
             }
 
@@ -52,11 +47,8 @@ module.exports = function(data) {
                     return res.redirect(`/forums/${resultForum.id}/topics`);
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.errors.name.message
                     });
                 });
         },
@@ -73,20 +65,15 @@ module.exports = function(data) {
                     });
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.message
                     });
                 });
         },
         addCommentToTopic(req, res) {
             if (!req.user) {
-                return res.render('errorpage', {
-                    error: {
-                        message: userNotLoggedInMessage
-                    }
+                return res.status(401).send({
+                    message: userNotLoggedInMessage
                 });
             }
 
@@ -103,11 +90,8 @@ module.exports = function(data) {
                     return res.redirect(`/forums/${forumId}/topics/${resultTopic.id}`);
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.message
                     });
                 });
         }

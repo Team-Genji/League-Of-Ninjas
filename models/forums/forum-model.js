@@ -7,8 +7,8 @@ module.exports = modelRegistrator.register('Forum', {
         type: String,
         required: true,
         unique: false,
-        minlength: [minForumNameLength, 'Forum name is too long!'],
-        maxLength: [maxForumNameLength, 'Forum name is too short!']
+        minlength: [minForumNameLength, 'Forum name is too short!'],
+        maxlength: [maxForumNameLength, 'Forum name is too long!']
     },
     // _id, name
     topics: [{}]
