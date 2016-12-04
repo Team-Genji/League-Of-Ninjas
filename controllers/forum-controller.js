@@ -9,7 +9,7 @@ module.exports = function (data) {
                     });
                 })
                 .catch(err => {
-                    return res.status(406).send({
+                    return res.status(409).send({
                         message: err.message
                     });
                 });
@@ -22,7 +22,7 @@ module.exports = function (data) {
             }
 
             if (req.user.role !== 'admin') {
-                res.status(406).send({
+                res.status(401).send({
                     message: 'Only admins can create forums!'
                 });
             }
@@ -36,7 +36,7 @@ module.exports = function (data) {
                     return res.redirect('/forums');
                 })
                 .catch(err => {
-                    return res.status(406).send({
+                    return res.status(409).send({
                         message: err.errors.name.message
                     });
                 });
@@ -52,7 +52,7 @@ module.exports = function (data) {
                     });
                 })
                 .catch(err => {
-                    return res.status(406).send({
+                    return res.status(409).send({
                         message: err.message
                     });
                 });
