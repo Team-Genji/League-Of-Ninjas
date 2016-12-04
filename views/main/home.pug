@@ -1,6 +1,10 @@
 extends ./_layout
 
 block content
+  div.text-center
+    h2 Welcome Summoner!
+    h3(style='padding-bottom: 24px') Here you can find awesome tools to enhance your experience while playing League of Legends
+
   div#myCarousel.carousel.slide(data-ride='carousel')
     ol.carousel-indicators
       li.active(data-targer='#myCarousel' data-slide-to='0')
@@ -22,4 +26,21 @@ block content
     a.right.carousel-control(href='#myCarousel' role='button' data-slide='next')
       span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
       span.sr-only Next
+  div.container
+    div.row
+      div.col-md-4.text-center
+        h3 Chat
+        p Insert creative info here    
+        p
+          a.btn.btn-success(href='/chat' role="button") Open Chat
+      div.col-md-4.text-center
+        h3 Summoner Info
+        p Insert creative info here    
+        p
+          a.btn.btn-success(href='/summonersearch' role="button") Open Summoner Search   
+      div.col-md-4.text-center
+        h3 Game Info
+        p Insert creative info here    
+        p
+          a.btn.btn-success(href='/gamesearch' role="button") Open Game Search
       
