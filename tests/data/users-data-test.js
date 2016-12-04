@@ -89,5 +89,48 @@ describe('Users-data-tests', () => {
                     done();
                 });
         });
+
+        it('expect to return error when user already exists', done => {
+            sinon.stub(User.prototype, 'save', cb => {
+                cb('User with this username already exists!', null);
+            });
+
+            data.createUser(username, password, avatarUrl)
+                .catch(err => {
+                    expect(err).to.eql('User with this username already exists!');
+                    done();
+                });
+        });
+    });
+
+    describe('updateUser tests', () => {
+        let username = 'John',
+            avatarUrl = 'http://natashaleitedemoura.com/wp-content/uploads/sites/10/2014/11/horror_2382351b.jpg',
+            newPassword = 'dwdwdw',
+            oldPassword = 'mishomisho';
+
+        let expectedUserWithNewPassword = new User({
+            username,
+            newPassword,
+            avatarUrl
+        });
+
+        afterEach(() => {
+            sinon.restore();
+        });
+
+        it('expect to update password successfully', done => {
+            sinon.stub(User.prototype, 'updateUserSettings', cb => {
+                cb(null, expectedUserWithNewPassword);
+            });
+
+            let settings = { password: newPassword}
+            data.updateUserSettings(_id, settings)
+                .catch(err => {
+                    expect(err).to.eql('You must enter a valid url for your avatar');
+                    done();
+                });
+        });
+
     });
 });

@@ -33,24 +33,26 @@ module.exports = function (data) {
 
 
             if (password) {
+                if (password.length < minPasswordLenght) {
+                    return res.send({
+                        success: false,
+                        message: `Password must be at least ${minPasswordLenght} characters`
+                    });
+                }
+                if (password.length > maxPasswordLenght) {
+                    return res.send({
+                        success: false,
+                        message: `Password must be at least ${maxPasswordLenght} characters`
+                    });
+                }
                 settings.password = password;
             }
             if (avatarUrl) {
                 settings.avatarUrl = avatarUrl;
             }
-            if (password.length < minPasswordLenght) {
-                return res.send({
-                    success: false,
-                    message: `Password must be at least ${minPasswordLenght} characters`
-                });
-            }
 
-            if (password.length > maxPasswordLenght) {
-                return res.send({
-                    success: false,
-                    message: `Password must be at least ${maxPasswordLenght} characters`
-                });
-            }
+
+
             data.updateUserSettings(req.user._id, settings)
                 .then(() => {
                     return res.send({
