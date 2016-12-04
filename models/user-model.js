@@ -12,5 +12,9 @@ module.exports = modelRegistrator.register('User', {
     hashPass: String,
     avatarUrl: {
         type: String
+    },
+    role: {
+        type: String,
+        default: 'normal'
     }
 });
