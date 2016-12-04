@@ -9,15 +9,15 @@ module.exports.register = function(name, schemaProperties) {
             timestamps: true
         });
         schema.virtual('password')
-        .set(function(password) {
-            console.log(password);
-            this._password = password;
-            this.salt = this.makeSalt();
-            this.hashPass = this.encryptPassword(password);
-        })
-        .get(function() {
-            return this._password;
-        });
+            .set(function(password) {
+                console.log(password);
+                this._password = password;
+                this.salt = this.makeSalt();
+                this.hashPass = this.encryptPassword(password);
+            })
+            .get(function() {
+                return this._password;
+            });
 
         schema.methods = {
             makeSalt() {
@@ -29,15 +29,14 @@ module.exports.register = function(name, schemaProperties) {
                 }
                 try {
                     return crypto
-                .createHmac('sha1', this.salt)
-                .update(password)
-                .digest('hex');
+                        .createHmac('sha1', this.salt)
+                        .update(password)
+                        .digest('hex');
                 } catch (err) {
                     return '';
                 }
             },
             authenticatePassword(password) {
-                console.log(this.hashPass);
                 return this.encryptPassword(password) === this.hashPass;
             }
         };
