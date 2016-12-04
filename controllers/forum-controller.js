@@ -52,7 +52,7 @@ module.exports = function (data) {
                     });
                 })
                 .catch(err => {
-                    return res.status(406).send({
+                    return res.status(409).send({
                         message: err.message
                     });
                 });
