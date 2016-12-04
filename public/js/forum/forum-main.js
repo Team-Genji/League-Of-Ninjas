@@ -7,15 +7,6 @@ window.onload = function () {
         };
         let url = '/forums';
 
-        if (forumName.name.length < 5) {
-            toastr.error('The forum name is too short!');
-            return;
-        }
-        if (forumName.name.length > 20) {
-            toastr.error('The forum name is too long!');
-            return;
-        }
-
         requester.postJSON(url, forumName)
             .then(() => {
                 toastr.success('Forum created sucessfuly!');

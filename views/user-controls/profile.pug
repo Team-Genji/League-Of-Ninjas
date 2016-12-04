@@ -20,10 +20,10 @@ block content
                 input.form-control(id="user-avatar" type="text" name="avatarUrl" placeholder="Avatar url")
             div.form-group.col-sm-8
                label.labelSettings New password
-               input.form-control(id="user-new-password" type="text" name="password")
+               input.form-control(id="user-new-password" type="password" name="password")
             div.form-group.col-sm-8
                 label.labelSettings Repeat new password
-                input.form-control(id="user-repeat-new-password" type="text" name="repeat-password")
+                input.form-control(id="user-repeat-new-password" type="password" name="repeat-password")
                 button.btn.btn-success.col-xs-6-previous(id="save-changes" type="submit")
                     | Save Changes
                     form(action="/profile" method="get")

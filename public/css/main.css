@@ -4,7 +4,9 @@
 
 .im-centered {
     margin: auto;
-    width: 500px
+    min-width: 100px;
+    max-width: 600px;
+    word-wrap: break-word;
 }
 
 .comment-body {

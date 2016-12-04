@@ -7,15 +7,6 @@ window.onload = function () {
         };
         let url = `${window.location.href}/topics`;
 
-        if (topicName.name.length < 5) {
-            toastr.error('The topic name is too short!');
-            return;
-        }
-        if (topicName.name.length > 20) {
-            toastr.error('The topic name is too long!');
-            return;
-        }
-
         requester.postJSON(url, topicName)
             .then(() => {
                 toastr.success('Topic created sucessfuly!');

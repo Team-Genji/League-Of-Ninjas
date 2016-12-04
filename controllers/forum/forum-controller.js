@@ -1,6 +1,3 @@
-const userNotLoggedInMessage = 'User not logged in!';
-const onlyAdminsCanPostMessage = 'Only admins can create forums!';
-
 module.exports = function (data) {
     return {
         listForums(req, res) {
@@ -12,28 +9,22 @@ module.exports = function (data) {
                     });
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.message
                     });
                 });
         },
         createForum(req, res) {
             if (!req.user) {
-                return res.render('errorpage', {
-                    error: {
-                        message: userNotLoggedInMessage
-                    }
+                return res.status(401).send({
+                    message: 'User not logged in!'
                 });
             }
 
             if (req.user.role !== 'admin') {
-                let jsonResponse = JSON.stringify({
-                    onlyAdminsCanPostMessage
+                res.status(406).send({
+                    message: 'Only admins can create forums!'
                 });
-                res.status(406).json(jsonResponse);
             }
 
             let {
@@ -45,11 +36,8 @@ module.exports = function (data) {
                     return res.redirect('/forums');
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.errors.name.message
                     });
                 });
         },
@@ -64,11 +52,8 @@ module.exports = function (data) {
                     });
                 })
                 .catch(err => {
-                    return res.render('errorpage', {
-                        error: {
-                            message: err.message
-                        },
-                        user: req.user
+                    return res.status(406).send({
+                        message: err.message
                     });
                 });
         }
