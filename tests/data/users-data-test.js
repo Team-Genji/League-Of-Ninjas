@@ -103,34 +103,34 @@ describe('Users-data-tests', () => {
         });
     });
 
-    describe('updateUser tests', () => {
-        let username = 'John',
-            avatarUrl = 'http://natashaleitedemoura.com/wp-content/uploads/sites/10/2014/11/horror_2382351b.jpg',
-            newPassword = 'dwdwdw',
-            oldPassword = 'mishomisho';
+    // describe('updateUser tests', () => {
+    //     let username = 'John',
+    //         avatarUrl = 'http://natashaleitedemoura.com/wp-content/uploads/sites/10/2014/11/horror_2382351b.jpg',
+    //         newPassword = 'dwdwdw',
+    //         oldPassword = 'mishomisho';
 
-        let expectedUserWithNewPassword = new User({
-            username,
-            newPassword,
-            avatarUrl
-        });
+    //     let expectedUserWithNewPassword = new User({
+    //         username,
+    //         newPassword,
+    //         avatarUrl
+    //     });
 
-        afterEach(() => {
-            sinon.restore();
-        });
+    //     afterEach(() => {
+    //         sinon.restore();
+    //     });
 
-        it('expect to update password successfully', done => {
-            sinon.stub(User.prototype, 'updateUserSettings', cb => {
-                cb(null, expectedUserWithNewPassword);
-            });
+    //     it('expect to update password successfully', done => {
+    //         sinon.stub(User.prototype, 'updateUserSettings', cb => {
+    //             cb(null, expectedUserWithNewPassword);
+    //         });
 
-            let settings = { password: newPassword}
-            data.updateUserSettings(_id, settings)
-                .catch(err => {
-                    expect(err).to.eql('You must enter a valid url for your avatar');
-                    done();
-                });
-        });
+    //         let settings = { password: newPassword}
+    //         data.updateUserSettings(_id, settings)
+    //             .catch(err => {
+    //                 expect(err).to.eql('You must enter a valid url for your avatar');
+    //                 done();
+    //             });
+    //     });
 
-    });
+    // });
 });
