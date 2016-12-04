@@ -26,12 +26,12 @@ module.exports = function (models) {
         },
         getTopics() {
             return new Promise((resolve, reject) => {
-                Topic.find((error, forums) => {
-                    if (error) {
+                Topic.find((error, topics) => {
+                    if (error || !topics) {
                         return reject(error);
                     }
 
-                    return resolve(forums);
+                    return resolve(topics);
                 });
             });
         },
@@ -40,7 +40,7 @@ module.exports = function (models) {
                 Topic.findOne({
                     _id: topicId
                 }, (error, topic) => {
-                    if (error) {
+                    if (error || !topic) {
                         return reject(error);
                     }
 

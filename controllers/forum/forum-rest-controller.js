@@ -9,10 +9,10 @@ module.exports = function (data) {
                         forums
                     });
                 })
-                .catch(error => {
+                .catch(() => {
                     res.status(409).json({
                         success: false,
-                        message: error.message
+                        message: 'Could not get the forums!'
                     });
                 });
         },
@@ -27,10 +27,10 @@ module.exports = function (data) {
                         forum
                     });
                 })
-                .catch(error => {
+                .catch(() => {
                     res.status(409).json({
                         success: false,
-                        message: error.message
+                        message: 'Could not get forum!'
                     });
                 });
         }
