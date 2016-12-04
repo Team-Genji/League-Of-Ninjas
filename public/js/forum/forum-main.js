@@ -7,11 +7,21 @@ window.onload = function () {
         };
         let url = '/forums';
 
+        if (forumName.name.length < 5) {
+            toastr.error('The forum name is too short!');
+            return;
+        }
+        if (forumName.name.length > 20) {
+            toastr.error('The forum name is too long!');
+            return;
+        }
+
         requester.postJSON(url, forumName)
-            .then(response => {
-                toastr.success(response.message);
-                // maybe I should do something else here
-                location.reload();
+            .then(() => {
+                toastr.success('Forum created sucessfuly!');
+                setTimeout(() => {
+                    location.reload();
+                }, 1000);
             })
             .catch(error => {
                 toastr.error(error.responseJSON.message);

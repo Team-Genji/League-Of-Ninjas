@@ -1,6 +1,6 @@
 const userNotLoggedInMessage = 'User not logged in!';
 
-module.exports = function (data) {
+module.exports = function(data) {
     return {
         listForums(req, res) {
             return data.getForums()
@@ -21,11 +21,11 @@ module.exports = function (data) {
         },
         createForum(req, res) {
             if (!req.user) {
-                let jsonResponse = JSON.stringify({
-                    userNotLoggedInMessage
+                return res.render('errorpage', {
+                    error: {
+                        message: userNotLoggedInMessage
+                    }
                 });
-
-                res.status(406).json(jsonResponse);
             }
 
             let {
@@ -33,17 +33,15 @@ module.exports = function (data) {
             } = req.body;
 
             return data.createForum(name)
-                .then(forum => {
-                    return res.status(200).json({
-                        success: true,
-                        message: 'Forum created successfuly!',
-                        forum
-                    });
+                .then(() => {
+                    return res.redirect('/forums');
                 })
-                .catch(() => {
-                    return res.status(409).json({
-                        success: false,
-                        message: 'Invalid forum name!'
+                .catch(err => {
+                    return res.render('errorpage', {
+                        error: {
+                            message: err.message
+                        },
+                        user: req.user
                     });
                 });
         },
