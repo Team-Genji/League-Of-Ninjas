@@ -1,5 +1,5 @@
 const userExistsErrorCode = 11000;
-
+const validator = require('../validator');
 const userExistsErrorMessage = 'User with this username already exists!';
 
 module.exports = function (models) {
@@ -15,6 +15,15 @@ module.exports = function (models) {
                 avatarUrl
             });
             return new Promise((resolve, reject) => {
+                if (!validator.validateString(username, 3, 50)) {
+                    return reject('You must enter correct username between 3 and 50 letters');
+                }
+                if (!validator.validateString(password, 6, 50)) {
+                    return reject('You must enter correct password between 6 and 50 letters');
+                }
+                if (!validator.validateUrl(avatarUrl)) {
+                    return reject('You must enter a valid url for your avatar');
+                }
                 user.save(err => {
                     if (err) {
                         if (err.code === userExistsErrorCode) {
