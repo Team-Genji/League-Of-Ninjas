@@ -1,9 +1,6 @@
 const userExistsErrorCode = 11000;
 
 const userExistsErrorMessage = 'User with this username already exists!';
-const mongo = require('mongodb');
-const User = require('./../../models/user-model');
-const connection = mongo.MongoClient.connect('mongodb://localhost/LeagueOfNinjas');
 
 module.exports = function (models) {
     let {
@@ -33,6 +30,9 @@ module.exports = function (models) {
         },
         updateUserSettings(_id, settings) {
             return User.findById(_id, (err, user) => {
+                if (err) {
+                    return;
+                }
                 if (settings.password) {
                     user.password = settings.password;
                 }

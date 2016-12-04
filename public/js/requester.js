@@ -1,8 +1,8 @@
 /* globals $ */
 
-let requester = (function () {
+var requester = (function () {
     function get(url) {
-        let promise = new Promise((resolve, reject) => {
+        var promise = new Promise(function (resolve, reject) {
             $.ajax({
                 url,
                 method: 'GET',
@@ -18,8 +18,8 @@ let requester = (function () {
     }
 
     function putJSON(url, body, options = {}) {
-        let promise = new Promise((resolve, reject) => {
-            let headers = options.headers || {};
+        var promise = new Promise(function (resolve, reject) {
+            var headers = options.headers || {};
             $.ajax({
                 url,
                 headers,
@@ -38,8 +38,8 @@ let requester = (function () {
     }
 
     function postJSON(url, body, options = {}) {
-        let promise = new Promise((resolve, reject) => {
-            let headers = options.headers || {};
+        var promise = new Promise(function (resolve, reject) {
+            var headers = options.headers || {};
 
             $.ajax({
                 url,
@@ -59,8 +59,8 @@ let requester = (function () {
     }
 
     function getJSON(url, options = {}) {
-        let promise = new Promise((resolve, reject) => {
-            let headers = options.headers || {};
+        var promise = new Promise(function (resolve, reject) {
+            var headers = options.headers || {};
 
             $.ajax({
                 url,
