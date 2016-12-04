@@ -1,8 +1,10 @@
+const iconLinkProvider = require('../utils/profile-icon-link-provider');
+
 const leaguesField = 'leagues';
 const queueField = 'queue';
 const soloQueueField = 'RANKED_SOLO_5x5';
 
-function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdField) {
+function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdField, region = null) {
     let summonersFullInfo = [];
 
     // Array is used when parsing in-game players
@@ -45,6 +47,8 @@ function getFullSummonersInfo(summonersInfo, summonersLeagueInfo, summonerIdFiel
             }
 
             summonerFullInfo[leaguesField] = summonerLeagueInfo;
+            summonerFullInfo.region = region;
+            summonerFullInfo.iconLink = iconLinkProvider.getProfileIconLink(summonerFullInfo.name, region);
             summonersFullInfo.push(summonerFullInfo);
         });
     }
