@@ -2,7 +2,8 @@
 const chai = require('chai');
 const sinonModule = require('sinon');
 let expect = chai.expect;
-
+let assert = chai.assert;
+var spy = sinonModule.spy();
 describe('Users-data-tests', () => {
 
     let sinon;
@@ -16,7 +17,7 @@ describe('Users-data-tests', () => {
 
         save() {}
         static find() {}
-        static findOne() {}
+        static findById() {}
     }
 
     let data = require('../../data/user/user-data')({ User });
@@ -103,15 +104,23 @@ describe('Users-data-tests', () => {
         });
     });
 
+
     // describe('updateUser tests', () => {
     //     let username = 'John',
     //         avatarUrl = 'http://natashaleitedemoura.com/wp-content/uploads/sites/10/2014/11/horror_2382351b.jpg',
     //         newPassword = 'dwdwdw',
-    //         oldPassword = 'mishomisho';
+    //         oldPassword = 'mishomisho',
+    //         _id = 1;
 
     //     let expectedUserWithNewPassword = new User({
     //         username,
     //         newPassword,
+    //         avatarUrl
+    //     });
+
+    //     let expectedUserWithOldPassword = new User({
+    //         username,
+    //         oldPassword,
     //         avatarUrl
     //     });
 
@@ -120,16 +129,13 @@ describe('Users-data-tests', () => {
     //     });
 
     //     it('expect to update password successfully', done => {
-    //         sinon.stub(User.prototype, 'updateUserSettings', cb => {
-    //             cb(null, expectedUserWithNewPassword);
+    //         sinon.stub(User.prototype, 'findById', cb => {
+    //             cb(expectedUserWithOldPassword);
     //         });
-
+    //         spy(User.save);
     //         let settings = { password: newPassword}
-    //         data.updateUserSettings(_id, settings)
-    //             .catch(err => {
-    //                 expect(err).to.eql('You must enter a valid url for your avatar');
-    //                 done();
-    //             });
+    //         data.updateUserSettings(_id, settings);
+    //         console.dir(spy.calledWithExactly.arguments);
     //     });
 
     // });
