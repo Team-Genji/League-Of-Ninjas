@@ -13,7 +13,7 @@ block content
 
         div.list-group: each forum in forums
             a(href='/forums/' + forum.id).list-group-item.list-group-item-success: span= forum.name
-        if user
+        if user && user.role === 'admin'
             input.form-control#input-forum-name(type="text" placeholder="Enter a name of the forum")
             button.btn.btn-success#btn-forum-create
                 | Create Forum
