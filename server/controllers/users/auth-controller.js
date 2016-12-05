@@ -62,7 +62,7 @@ module.exports = function (data) {
             if (password.length > maxPasswordLenght) {
                 return res.send({
                     success: false,
-                    message: `Password must be at least ${maxPasswordLenght} characters`
+                    message: `Password must be less than ${maxPasswordLenght} characters`
                 });
             }
 

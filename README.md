@@ -41,3 +41,5 @@ We have used our whole javascript skillset to deliver a well-engineered project 
 [The project is being hosted here.](https://leagueofninjas.herokuapp.com/)
 
 [YouTube presentation video](https://www.youtube.com/watch?v=A6pnXQya8jM)
+
+[Telerik Academy showcase system link](http://best.telerikacademy.com/projects/387/League-of-Ninjas)
