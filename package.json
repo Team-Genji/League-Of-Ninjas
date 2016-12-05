@@ -9,6 +9,10 @@
         "test": "./node_modules/.bin/mocha tests tests/**/*.js",
         "posttest": "./node_modules/.bin/eslint .",
         "start": "node app.js"
+
+    },
+    "engines": {
+        "node": "7.2.0"
     },
     "author": "Team Genji",
     "license": "GPLv3",
