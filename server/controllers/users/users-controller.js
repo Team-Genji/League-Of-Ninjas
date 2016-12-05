@@ -31,7 +31,6 @@ module.exports = function (data) {
             let minPasswordLenght = 6;
             let maxPasswordLenght = 24;
 
-
             if (password) {
                 if (password.length < minPasswordLenght) {
                     return res.send({
@@ -50,8 +49,6 @@ module.exports = function (data) {
             if (avatarUrl) {
                 settings.avatarUrl = avatarUrl;
             }
-
-
 
             data.updateUserSettings(req.user._id, settings)
                 .then(() => {

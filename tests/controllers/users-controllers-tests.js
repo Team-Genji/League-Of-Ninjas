@@ -26,7 +26,6 @@ describe('users-controllers-tests', () => {
             .withArgs(expectedRoute)
             .once();
         userController.getLogin(req, res);
-
     });
 
     it('getProfile should render ./user-controls/profile if authenticated', () => {
@@ -59,7 +58,6 @@ describe('users-controllers-tests', () => {
         userController.getProfile(req, res);
 
         resMock.verify();
-
     });
 
     it('getProfile should redirect to ./unauthorized if not authenticated', () => {
