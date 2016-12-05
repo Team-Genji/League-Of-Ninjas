@@ -6,8 +6,8 @@ module.exports = {
         if (chars) {
             let strToCheck = str.split('');
             if (strToCheck.some(char => {
-                    return chars.indexOf(char) < 0;
-                })) {
+                return chars.indexOf(char) < 0;
+            })) {
                 return false;
             }
         }

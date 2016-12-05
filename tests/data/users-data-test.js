@@ -2,8 +2,7 @@
 const chai = require('chai');
 const sinonModule = require('sinon');
 let expect = chai.expect;
-let assert = chai.assert;
-var spy = sinonModule.spy();
+
 describe('Users-data-tests', () => {
 
     let sinon;
@@ -20,7 +19,7 @@ describe('Users-data-tests', () => {
         static findById() {}
     }
 
-    let data = require('../../data/user/user-data')({ User });
+    let data = require('../../server/data/user/user-data')({ User });
     beforeEach(() => {
         sinon = sinonModule.sandbox.create();
     });
