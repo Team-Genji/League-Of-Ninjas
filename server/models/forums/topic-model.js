@@ -1,6 +1,6 @@
 const modelRegistrator = require('../utils/model-registrator');
-const minTopicNameLength = 5;
-const maxTopicNameLength = 20;
+const minTopicNameLength = 10;
+const maxTopicNameLength = 50;
 
 module.exports = modelRegistrator.register('Topic', {
     name: {
