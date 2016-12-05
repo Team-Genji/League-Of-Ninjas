@@ -1,5 +1,6 @@
 module.exports = function(data) {
     return {
+        name: 'topicRestController',
         listTopicsInForumRest(req, res) {
             let forumId = req.params.forumId;
 

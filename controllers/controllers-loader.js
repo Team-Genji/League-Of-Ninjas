@@ -1,16 +1,14 @@
-/* module require __dirname */
-
-const fs = require("fs"),
-    path = require("path");
+const fileWalker = require('../utils/file-system-utils').walkDirectorySync;
 
 module.exports = function(params) {
     let controllers = {};
-    fs.readdirSync(__dirname)
-        .filter(file => file.includes("-controller"))
-        .forEach(file => {
-            let modulePath = path.join(__dirname, file);
+
+    fileWalker(__dirname, file => {
+        if (file.includes('-controller')) {
+            const modulePath = file;
             let theModule = require(modulePath)(params);
             controllers[theModule.name] = theModule;
-        });
+        }
+    });
     return controllers;
 };

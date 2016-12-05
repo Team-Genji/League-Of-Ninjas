@@ -2,6 +2,7 @@ const userNotLoggedInMessage = 'User not logged in!';
 
 module.exports = function(data) {
     return {
+        name: 'topicController',
         listTopicsInForum(req, res) {
             let {
                 forumId

@@ -5,6 +5,7 @@ const queryParams = {
 
 module.exports = function(data) {
     return {
+        name: 'leagueInfoController',
         getSummonerSearch(req, res) {
             return res.render('league-info/summonersearch', { user: req.user });
         },

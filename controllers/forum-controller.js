@@ -1,5 +1,6 @@
-module.exports = function (data) {
+module.exports = function(data) {
     return {
+        name: 'forumController',
         listForums(req, res) {
             return data.getForums()
                 .then(forums => {

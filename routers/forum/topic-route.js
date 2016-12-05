@@ -1,5 +1,5 @@
-module.exports = function(app, data) {
-    let controller = require('../../controllers/topic-controller')(data);
+module.exports = function(app, controllers) {
+    let controller = controllers.topicController;
 
     app
         .get('/forums/:forumId/topics', controller.listTopicsInForum)

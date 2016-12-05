@@ -1,6 +1,6 @@
-module.exports = function(app, data) {
-    let chatController = require('../controllers/chat-controller')(data);
+module.exports = function(app, controllers) {
+    let controller = controllers.chatController;
 
     app
-        .get('/chat', chatController.getChat);
+        .get('/chat', controller.getChat);
 };

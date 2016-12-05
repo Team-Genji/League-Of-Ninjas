@@ -1,5 +1,5 @@
-module.exports = function(app, data) {
-    let controller = require('../controllers/default-controller')(data);
+module.exports = function(app, controllers) {
+    let controller = controllers.defaultController;
 
     app.get('/', controller.resolve);
 };

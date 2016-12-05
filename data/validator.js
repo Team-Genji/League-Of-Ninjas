@@ -4,17 +4,17 @@ module.exports = {
             return false;
         }
         if (chars) {
-            str = str.split('');
-            if (str.some(char => {
-                return chars.indexOf(char) < 0;
-            })) {
+            let strToCheck = str.split('');
+            if (strToCheck.some(char => {
+                    return chars.indexOf(char) < 0;
+                })) {
                 return false;
             }
         }
         return true;
     },
 
-    validateUrl (url) {
+    validateUrl(url) {
         if (!url || url.length === 0) {
             return;
         }

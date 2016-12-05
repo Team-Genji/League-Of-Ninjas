@@ -1,4 +1,4 @@
-module.exports = function(app, data, controllers) {
+module.exports = function(app, controllers) {
     let authController = controllers.authentication;
     let usersController = controllers.userController;
 

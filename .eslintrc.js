@@ -84,10 +84,6 @@ module.exports = {
         "key-spacing": "error",
         "keyword-spacing": "error",
         "line-comment-position": "error",
-        // "linebreak-style": [
-        //     "error",
-        //     "unix"
-        // ],
         "lines-around-comment": "error",
         "lines-around-directive": "error",
         "max-depth": "error",
@@ -149,7 +145,6 @@ module.exports = {
         "no-param-reassign": "error",
         "no-path-concat": "error",
         "no-plusplus": "error",
-        "no-process-env": "error",
         "no-process-exit": "error",
         "no-proto": "error",
         "no-prototype-builtins": "error",
@@ -181,7 +176,6 @@ module.exports = {
         "no-useless-computed-key": "error",
         "no-useless-concat": "error",
         "no-useless-constructor": "error",
-        "no-useless-escape": "error",
         "no-useless-rename": "error",
         "no-useless-return": "error",
         "no-var": "error",

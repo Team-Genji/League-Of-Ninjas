@@ -10,7 +10,6 @@ module.exports.register = function(name, schemaProperties) {
         });
         schema.virtual('password')
             .set(function(password) {
-                console.log(password);
                 this._password = password;
                 this.salt = this.makeSalt();
                 this.hashPass = this.encryptPassword(password);

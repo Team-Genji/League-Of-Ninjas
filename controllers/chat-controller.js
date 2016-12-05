@@ -1,5 +1,6 @@
 module.exports = function() {
     return {
+        name: 'chatController',
         getChat(req, res) {
             if (!req.user) {
                 return res.render('errorpage', { error: { message: 'You need to be logged in in order to chat' } });
