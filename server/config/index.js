@@ -1,4 +1,12 @@
+/* globals process */
+
+let connectionStrings = {
+    production: process.env.CONNECTION_STRING,
+    development: 'mongodb://localhost/LeagueOfNinjas'
+};
+
 module.exports = {
-    port: 3001,
-    connectionString: 'mongodb://localhost/LeagueOfNinjas'
+    environment: process.env.NODE_ENV || 'development',
+    connectionString: connectionStrings[process.env.NODE_ENV || 'development'],
+    port: process.env.PORT || 3001
 };
