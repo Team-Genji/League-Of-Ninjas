@@ -1,4 +1,4 @@
-# League of Ninjas - A League of Legends fan site
+# League of Ninjas - A League of Legends fan site [![Build Status](https://travis-ci.org/Team-Genji/League-Of-Ninjas.svg?branch=master)](https://travis-ci.org/Team-Genji/League-Of-Ninjas)
 <img src="http://ih0.redbubble.net/image.169628516.9422/sticker,375x360.u1.png" width="300px"/>
 ## A project by Team Genji
 The **LoN** project is a website which provides you with a lot of data about all League of Legends players and championships. It has a neat forum system where you can discuss about various topics. We also have a very cool live web chat, where you can chat with your mates.
