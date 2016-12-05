@@ -51,7 +51,6 @@ describe('Forum-data-tests', () => {
         forumsNames.forEach(name => {
             expectedForums.push(new Forum({ name }));
         });
-        console.log(expectedForums);
         afterEach(() => {
             sinon.restore();
         });
